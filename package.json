@@ -1,0 +1,13 @@
+{
+  "name": "raabta-foundation-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Raabta Foundation website with backend integrations",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}

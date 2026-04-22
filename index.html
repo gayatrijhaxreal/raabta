@@ -1063,16 +1063,16 @@ raabtians@gmail.com<br>support@raabta.org</span></div>
                             class="soc-btn">yt</button></a><a href="https://whatsapp.com/channel/0029Va7dt580bIdhv6cR092o" target="_blank"><button class="soc-btn">wp</button></a></div>
                 </div>
             </div>
-            <div class="ct-form rv">
+            <div class="ct-form rv" id="contact-form">
                 <h3>Send Us a Message</h3>
                 <div class="f-row">
-                    <div class="f-grp"><label>Full Name *</label><input type="text" placeholder="Your full name"></div>
-                    <div class="f-grp"><label>Phone Number *</label><input type="tel" placeholder="+91 XXXXX XXXXX">
+                    <div class="f-grp"><label>Full Name *</label><input id="contact-name" type="text" placeholder="Your full name"></div>
+                    <div class="f-grp"><label>Phone Number *</label><input id="contact-phone" type="tel" placeholder="+91 XXXXX XXXXX">
                     </div>
                 </div>
-                <div class="f-grp"><label>Email Address</label><input type="email" placeholder="your@email.com"></div>
+                <div class="f-grp"><label>Email Address</label><input id="contact-email" type="email" placeholder="your@email.com"></div>
                 <div class="f-grp"><label>Subject</label>
-                    <select>
+                    <select id="contact-subject">
                         <option>-- Select a subject --</option>
                         <option>Donation / Support</option>
                         <option>Volunteering</option>
@@ -1081,11 +1081,10 @@ raabtians@gmail.com<br>support@raabta.org</span></div>
                         <option>Other</option>
                     </select>
                 </div>
-                <div class="f-grp"><label>Message *</label><textarea
+                <div class="f-grp"><label>Message *</label><textarea id="contact-message"
                         placeholder="Write your message here..."></textarea></div>
-                <button class="btn btn-gold"
-                    style="width:100%;justify-content:center;display:flex;align-items:center;gap:8px"
-                    onclick="alert('Your message has been sent successfully! We will get back to you soon.')">📨 Send
+                <button class="btn btn-gold" id="contact-submit"
+                    style="width:100%;justify-content:center;display:flex;align-items:center;gap:8px">📨 Send
                     Message</button>
             </div>
         </div>
@@ -1280,29 +1279,7 @@ raabtians@gmail.com</a></li>
                         </div>
         </footer>
     </div>
-    <script >
-        const pages = ['home', 'intro', 'about', 'work', 'events', 'support', 'contact', 'terms'];
-        function go(id) {
-            pages.forEach(p => {
-                document.getElementById('pg-' + p).classList.toggle('on', p === id);
-                const nb = document.getElementById('n-' + p);
-                if (nb) nb.classList.toggle('on', p === id);
-            });
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            observe();
-        }
-        document.querySelectorAll('.f-btn').forEach(b => {
-            b.addEventListener('click', function () {
-                this.closest('.f-wrap').querySelectorAll('.f-btn').forEach(x => x.classList.remove('on'));
-                this.classList.add('on');
-            });
-        });
-        function observe() {
-            const io = new IntersectionObserver(es => { es.forEach(e => { if (e.isIntersecting) e.target.classList.add('in') }) }, { threshold: .1 });
-            document.querySelectorAll('.rv:not(.in)').forEach(el => io.observe(el));
-        }
-        observe();
-    </script>
+    <script src="main.js"></script>
 </body>
 
 </html>
