@@ -1,55 +1,65 @@
 const express = require("express");
-const fs = require("fs");
+const { Pool } = require("pg");
 const path = require("path");
 
 const app = express();
 const port = process.env.PORT || 3000;
-const dataDir = path.join(__dirname, "data");
-const actionsFile = path.join(dataDir, "actions.json");
-const contactsFile = path.join(dataDir, "contacts.json");
+
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL || "postgres://localhost/raabta",
+  ssl: process.env.NODE_ENV === "production" ? { rejectUnauthorized: false } : false
+});
 
 app.use(express.json());
 app.use(express.static(__dirname));
 
-function ensureStorage() {
-  if (!fs.existsSync(dataDir)) {
-    fs.mkdirSync(dataDir, { recursive: true });
-  }
-  if (!fs.existsSync(actionsFile)) {
-    fs.writeFileSync(actionsFile, "[]", "utf8");
-  }
-  if (!fs.existsSync(contactsFile)) {
-    fs.writeFileSync(contactsFile, "[]", "utf8");
-  }
-}
-
-function appendRecord(filePath, record) {
-  const content = fs.readFileSync(filePath, "utf8");
-  const parsed = JSON.parse(content);
-  parsed.push(record);
-  fs.writeFileSync(filePath, JSON.stringify(parsed, null, 2), "utf8");
-}
-
-app.post("/api/action", (req, res) => {
+async function initDatabase() {
   try {
-    ensureStorage();
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS actions (
+        id SERIAL PRIMARY KEY,
+        action_type VARCHAR(50) NOT NULL,
+        label VARCHAR(255),
+        page VARCHAR(100),
+        details JSONB,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      );
+    `);
+
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS contacts (
+        id SERIAL PRIMARY KEY,
+        name VARCHAR(255) NOT NULL,
+        phone VARCHAR(20) NOT NULL,
+        email VARCHAR(255),
+        subject VARCHAR(255),
+        message TEXT NOT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      );
+    `);
+
+    console.log("Database tables initialized");
+  } catch (error) {
+    console.error("Database init error:", error.message);
+  }
+}
+
+app.post("/api/action", async (req, res) => {
+  try {
     const { actionType, label, page, details } = req.body || {};
-    appendRecord(actionsFile, {
-      actionType: actionType || "button_click",
-      label: label || "unknown",
-      page: page || "unknown",
-      details: details || {},
-      createdAt: new Date().toISOString()
-    });
+    await pool.query(
+      "INSERT INTO actions (action_type, label, page, details) VALUES ($1, $2, $3, $4)",
+      [actionType || "button_click", label || "unknown", page || "unknown", JSON.stringify(details || {})]
+    );
     res.status(201).json({ ok: true, message: "Action logged" });
   } catch (error) {
+    console.error("Action log error:", error.message);
     res.status(500).json({ ok: false, message: "Failed to log action" });
   }
 });
 
-app.post("/api/contact", (req, res) => {
+app.post("/api/contact", async (req, res) => {
   try {
-    ensureStorage();
     const { name, phone, email, subject, message } = req.body || {};
 
     if (!name || !phone || !message) {
@@ -59,17 +69,14 @@ app.post("/api/contact", (req, res) => {
       });
     }
 
-    appendRecord(contactsFile, {
-      name,
-      phone,
-      email: email || "",
-      subject: subject || "Other",
-      message,
-      createdAt: new Date().toISOString()
-    });
+    await pool.query(
+      "INSERT INTO contacts (name, phone, email, subject, message) VALUES ($1, $2, $3, $4, $5)",
+      [name, phone, email || "", subject || "Other", message]
+    );
 
     res.status(201).json({ ok: true, message: "Message submitted successfully" });
   } catch (error) {
+    console.error("Contact submit error:", error.message);
     res.status(500).json({ ok: false, message: "Failed to submit message" });
   }
 });
@@ -83,6 +90,24 @@ app.get("/api/config", (req, res) => {
   });
 });
 
+app.get("/api/admin/contacts", async (req, res) => {
+  try {
+    const result = await pool.query("SELECT * FROM contacts ORDER BY created_at DESC LIMIT 100");
+    res.json({ ok: true, data: result.rows });
+  } catch (error) {
+    res.status(500).json({ ok: false, message: "Failed to fetch contacts" });
+  }
+});
+
+app.get("/api/admin/actions", async (req, res) => {
+  try {
+    const result = await pool.query("SELECT * FROM actions ORDER BY created_at DESC LIMIT 200");
+    res.json({ ok: true, data: result.rows });
+  } catch (error) {
+    res.status(500).json({ ok: false, message: "Failed to fetch actions" });
+  }
+});
+
 app.get("/health", (_req, res) => {
   res.json({ ok: true, service: "raabta-backend" });
 });
@@ -91,6 +116,8 @@ app.get("*", (_req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
 });
 
-app.listen(port, () => {
-  console.log(`Raabta app running on http://localhost:${port}`);
+initDatabase().then(() => {
+  app.listen(port, () => {
+    console.log(`Raabta app running on http://localhost:${port}`);
+  });
 });
