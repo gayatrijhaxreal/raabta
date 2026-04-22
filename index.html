@@ -1,0 +1,1318 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Raabta Foundation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Serif+Devanagari:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ━━━━ NAVBAR ━━━━ -->
+    <nav class="nav">
+        <div class="nav-logo" onclick="go('home')">
+            <!-- Logo Circle — mirrors the actual Raabta logo -->
+            <div class="logo-circle">
+                <div class="logo-sky"></div>
+                <div class="logo-clouds"></div>
+                <div class="logo-grass"></div>
+                <div class="logo-text">
+                    <span class="logo-devanagari">राब्ता</span>
+                    <span class="logo-sub-text">Foundation</span>
+                </div>
+                <div class="logo-shake">🤝</div>
+                <div class="logo-border"></div>
+            </div>
+            <div class="nav-text">
+                <span class="nav-title">Raabta</span>
+                <span class="nav-sub">Foundation</span>
+            </div>
+        </div>
+        <ul class="nav-links" id="nl">
+            <li><button onclick="go('home')" id="n-home" class="on">Home</button></li>
+            <li><button onclick="go('intro')" id="n-intro">Introduction</button></li>
+            <li><button onclick="go('about')" id="n-about">About Us</button></li>
+            <li><button onclick="go('work')" id="n-work">Our Work</button></li>
+            <li><button onclick="go('events')" id="n-events">Events</button></li>
+            <li><button onclick="go('contact')" id="n-contact">Contact</button></li>
+            <li><button onclick="go('terms')" id="n-terms">Terms</button></li>
+            <li><button onclick="go('support')" id="n-support" class="cta-btn">Support Us</button></li>
+        </ul>
+    </nav>
+
+    <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━
+     HOME
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+    <div class="pg on" id="pg-home">
+        <div class="hero">
+            <div class="hero-grass"></div>
+            <div class="hero-content">
+                <!-- Big logo in hero -->
+                <div class="hero-logo-big">
+                    <div class="hlb-sky"></div>
+                    <div class="hlb-clouds"></div>
+                    <div class="hlb-grass"></div>
+                    <div class="hlb-text">
+                        <span class="hlb-dev">राब्ता</span>
+                        <span class="hlb-sub">Foundation</span>
+                    </div>
+                    <div class="hlb-shake">🤝</div>
+                    <div class="hlb-border"></div>
+                </div>
+                <div class="hero-badge">🤝 Social Service · Community Development</div>
+                <h1 class="hero-name"><span>Raabta</span> Foundation</h1>
+                <div class="hero-name-sub">"Connection · Relation · Bond"</div>
+                <p class="hero-desc">Weaving bonds through service — empowering communities through education, health,
+                    environment, and social harmony for a better tomorrow.</p>
+                <div class="h-btns">
+                    <button class="btn btn-gold" onclick="go('about')">Learn About Us</button>
+                    <button class="btn btn-ghost" onclick="go('events')">Upcoming Events</button>
+                    <button class="btn btn-green" onclick="go('support')">Support Us</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="stats-bar">
+            <div class="stats-inner">
+                <div class="stat">
+                    <div class="stat-n">12<span class="stat-s">+</span></div>
+                    <div class="stat-l">Events Conducted</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-n">5<span class="stat-s">K+</span></div>
+                    <div class="stat-l">Families Supported</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-n">8</div>
+                    <div class="stat-l">States Active</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-n">200<span class="stat-s">+</span></div>
+                    <div class="stat-l">Volunteers</div>
+                </div>
+            </div>
+        </div>
+
+        <section>
+            <div class="c rv">
+                <span class="s-tag">What We Do</span>
+                <h2 class="s-h">For the community, with the community</h2>
+                <p class="s-p">Raabta Foundation is actively working in education, health, environment and social
+                    harmony — reaching those who need it most.</p>
+                <div class="g3">
+                    <div class="card">
+                        <div class="c-icon">📚</div>
+                        <div class="c-t">Education & Awareness</div>
+                        <p class="c-p">Free education camps, skill development programs, and empowering youth towards
+                            self-reliance and independent futures.</p><button class="c-lnk" onclick="go('work')">Learn
+                            More →</button>
+                    </div>
+                    <div class="card">
+                        <div class="c-icon g">🌱</div>
+                        <div class="c-t">Environmental Protection</div>
+                        <p class="c-p">Tree plantation drives, water conservation awareness, and an active role in
+                            building a greener, sustainable India.</p><button class="c-lnk" onclick="go('work')">Learn
+                            More →</button>
+                    </div>
+                    <div class="card">
+                        <div class="c-icon au">🤝</div>
+                        <div class="c-t">Social Harmony</div>
+                        <p class="c-p">Uniting diverse communities through dialogue, culture, and shared purpose —
+                            building bridges of brotherhood.</p><button class="c-lnk" onclick="go('work')">Learn More
+                            →</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="dark-sec">
+            <div class="ab-split">
+                <div class="ab-vis rv">
+                    <div>
+                        <div class="ab-vis-main">राब्ता</div>
+                        <div class="ab-vis-sub">Connection · Relation · Bond</div>
+                    </div>
+                </div>
+                <div class="ab-content rv">
+                    <span class="s-tag">Our Story</span>
+                    <h2>A resolve built on the foundation of relationships</h2>
+                    <p>Raabta means connection, bond, contact. It is from this sacred idea that Raabta Foundation was
+                        born — a platform that strives to reach every section of society.</p>
+                    <p>We believe that when communities unite, real and lasting change becomes possible. Every step
+                        taken together creates a ripple that transforms lives.</p>
+                    <button class="btn btn-gold" style="margin-top:8px" onclick="go('about')">Read Our Full
+                        Story</button>
+                </div>
+            </div>
+        </div>
+
+        <section style="background:var(--offW)">
+            <div class="c rv">
+                <span class="s-tag">Upcoming Events</span>
+                <h2 class="s-h">Join us in making a difference</h2>
+                <div class="g3">
+                    <div class="card" style="border-top:4px solid var(--royal)">
+                        <div
+                            style="font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;font-weight:600">
+                            June 2026</div>
+                        <div class="c-t">Health Awareness Camp</div>
+                        <p class="c-p">Free medical check-ups and doctor consultations — open and free for all sections
+                            of society.</p><button class="c-lnk" onclick="go('events')">View Details →</button>
+                    </div>
+                    <div class="card" style="border-top:4px solid var(--green)">
+                        <div
+                            style="font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;font-weight:600">
+                            July 2026</div>
+                        <div class="c-t">Tree Plantation Drive</div>
+                        <p class="c-p">1,000 saplings in a single day — our unwavering commitment to the environment and
+                            the planet.</p><button class="c-lnk" onclick="go('events')">View Details →</button>
+                    </div>
+                    <div class="card" style="border-top:4px solid var(--gold)">
+                        <div
+                            style="font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;font-weight:600">
+                            August 2026</div>
+                        <div class="c-t">Youth Leadership Workshop</div>
+                        <p class="c-p">A special two-day workshop to empower young people with essential leadership and
+                            communication skills.</p><button class="c-lnk" onclick="go('events')">View Details
+                            →</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="cta-band rv">
+            <h2>Together, let us create change</h2>
+            <p>Your single step can transform someone's life forever.</p><button class="btn btn-gold"
+                onclick="go('support')">Support Us Now</button>
+        </div>
+        <div class="gold-bar"></div>
+        <footer>
+            <div class="ft-grid">
+                <div class="ft-brand">
+                    <div class="logo-h">राब्ता</div>
+                    <div class="logo-e">Raabta Foundation</div>
+                    <p>Weaving bonds through service, culture and community for a better tomorrow.</p>
+                </div>
+                <div class="ft-col">
+                    <h4>Pages</h4>
+                    <ul>
+                        <li><button onclick="go('home')">Home</button></li>
+                        <li><button onclick="go('intro')">Introduction</button></li>
+                        <li><button onclick="go('about')">About Us</button></li>
+                        <li><button onclick="go('work')">Our Work</button></li>
+                    </ul>
+                </div>
+                <div class="ft-col">
+                    <h4>Organisation</h4>
+                    <ul>
+                        <li><button onclick="go('events')">Events</button></li>
+                        <li><button onclick="go('support')">Support Us</button></li>
+                        <li><button onclick="go('contact')">Contact</button></li>
+                        <li><button onclick="go('terms')">Terms & Conditions</button></li>
+                    </ul>
+                </div>
+                <div class="ft-col">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="mailto:raabtians@gmail.com">raabtians@gmail.com</a></li>
+                        <li><a href="tel:+919316863838">+91 93168 63838</a></li>
+                        <li><span style="font-size:13.5px;color:rgba(255,255,255,.4)">New Delhi, India</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="ft-bottom"><span class="ft-copy">© 2026 Raabta Foundation · All Rights Reserved</span>
+                <div class="ft-soc"><a href="https://www.facebook.com/raabtians" target="_blank"><button class="soc-btn">f</button></a><a href="https://www.instagram.com/raabtians" target="_blank"><button class="soc-btn">in</button></a><a href="https://www.youtube.com/@raabtians" target="_blank"><button
+                        class="soc-btn">yt</button></a><a href="https://whatsapp.com/channel/0029Va7dt580bIdhv6cR092o" target="_blank"><button class="soc-btn">wp</button></a></div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━
+     INTRODUCTION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+    <div class="pg" id="pg-intro">
+        <div class="pg-hero">
+            <h1>Introduction</h1>
+            <p>Discover the philosophy, origin, and vision behind Raabta Foundation.</p>
+            <div class="breadcrumb"><span>Home</span><span class="sep">›</span><span class="cur">Introduction</span>
+            </div>
+        </div>
+
+        <div class="quote-band">
+            <div class="quote-wrap">
+                <span class="q-mark">"</span>
+                <p class="q-text">Raabta — the thread that connects hearts, unites societies, and restores humanity to
+                    its truest identity.</p>
+                <div class="q-attr">— Founding Philosophy of Raabta Foundation</div>
+            </div>
+        </div>
+
+        <section>
+            <div class="c rv">
+                <span class="s-tag">The Meaning of Raabta</span>
+                <h2 class="s-h">One word. Countless relationships.</h2>
+                <div class="g2">
+                    <div>
+                        <p class="s-p" style="max-width:100%">"Raabta" is a word from Urdu and Hindi meaning —
+                            connection, contact, bond. It is not merely linguistic; it expresses a deep and universal
+                            human emotion that transcends language and culture.</p>
+                        <p class="s-p" style="max-width:100%;margin-top:14px">When two hearts meet, when one community
+                            stands by another in sorrow, when a stranger holds the hand of someone in need — that is
+                            Raabta.</p>
+                    </div>
+                    <div
+                        style="background:linear-gradient(135deg,var(--offW),var(--goldP));border-radius:14px;padding:40px;border:1px solid rgba(200,160,48,.2)">
+                        <div style="display:flex;gap:16px;align-items:center;margin-bottom:18px">
+                            <div
+                                style="width:52px;height:52px;border-radius:50%;background:var(--royal);display:flex;align-items:center;justify-content:center;color:var(--gold);font-family:'Noto Serif Devanagari';font-size:22px;flex-shrink:0">
+                                रा</div>
+                            <div><strong
+                                    style="color:var(--text);font-family:'Playfair Display',serif;font-size:17px">Raabta
+                                    (noun)</strong><br><span style="color:var(--textL);font-size:13px">Connection ·
+                                    Contact · Bond · Union</span></div>
+                        </div>
+                        <p style="font-size:14px;color:var(--textL);line-height:1.9;padding-left:68px">A word prevalent
+                            in Hindi, Urdu and Persian that captures the depth of human relationships. This is our name,
+                            and this is our purpose.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section style="background:var(--offW)">
+            <div class="c rv">
+                <span class="s-tag">Our Symbols</span>
+                <h2 class="s-h">The deeper meaning of our logo</h2>
+                <div class="g3" style="margin-top:40px">
+                    <div class="card" style="text-align:center">
+                        <div style="font-size:48px;margin-bottom:16px">🤝</div>
+                        <div class="c-t">The Handshake</div>
+                        <p class="c-p">The handshake icon at the centre of our logo symbolises unity, cooperation, and
+                            trust — the cornerstones of our mission.</p>
+                    </div>
+                    <div class="card" style="text-align:center">
+                        <div style="font-size:48px;margin-bottom:16px">🌿</div>
+                        <div class="c-t">The Green Earth</div>
+                        <p class="c-p">The vibrant green field represents growth, nature, fertility and our deep
+                            commitment to a sustainable and living planet.</p>
+                    </div>
+                    <div class="card" style="text-align:center">
+                        <div style="font-size:48px;margin-bottom:16px">🌌</div>
+                        <div class="c-t">The Blue Sky</div>
+                        <p class="c-p">The deep royal blue sky symbolises limitless possibilities, hope, and the bright
+                            future we are working together to build.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section style="padding-bottom:0">
+            <div class="c rv"><span class="s-tag">Our Journey</span>
+                <h2 class="s-h">The Story of Raabta</h2>
+            </div>
+        </section>
+        <section style="background:var(--offW);padding-top:50px">
+            <div class="tl-wrap rv">
+                <div class="tl-item">
+                    <div class="tl-dot">2019</div>
+                    <div class="tl-box">
+                        <h4>The Foundation Stone</h4>
+                        <p>A small group came together and dreamed of Raabta — a platform that would connect every
+                            section of society through service and solidarity.</p>
+                    </div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-dot">2020</div>
+                    <div class="tl-box">
+                        <h4>COVID Relief Campaign</h4>
+                        <p>During the pandemic, we delivered ration kits, medicines and moral support to thousands of
+                            families who had nowhere else to turn.</p>
+                    </div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-dot">2021</div>
+                    <div class="tl-box">
+                        <h4>Expanding Education</h4>
+                        <p>Free online and offline classes launched — over 500 children benefited from our learning
+                            programmes in underserved communities.</p>
+                    </div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-dot">2023</div>
+                    <div class="tl-box">
+                        <h4>National Recognition</h4>
+                        <p>Expanded to 8 states, reached 5,000+ families and built a network of 200 dedicated volunteers
+                            committed to the cause.</p>
+                    </div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-dot">2026</div>
+                    <div class="tl-box">
+                        <h4>A New Horizon</h4>
+                        <p>Raabta now aims higher — in every district, every village, every heart. The mission
+                            continues, stronger than ever before.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="cta-band rv">
+            <h2>Become part of the Raabta family</h2>
+            <p>Join our journey and carry the torch of change forward.</p><button class="btn btn-gold"
+                onclick="go('support')">Join Us</button>
+        </div>
+        <div class="gold-bar"></div>
+        <footer>
+            <div class="ft-grid">
+                <div class="ft-brand">
+                    <div class="logo-h">राब्ता</div>
+                    <div class="logo-e">Raabta Foundation</div>
+                    <p>Weaving bonds through service and community.</p>
+                </div>
+                <div class="ft-col">
+                    <h4>Pages</h4>
+                    <ul>
+                        <li><button onclick="go('home')">Home</button></li>
+                        <li><button onclick="go('intro')">Introduction</button></li>
+                        <li><button onclick="go('about')">About Us</button></li>
+                        <li><button onclick="go('work')">Our Work</button></li>
+                    </ul>
+                </div>
+                <div class="ft-col">
+                    <h4>Organisation</h4>
+                    <ul>
+                        <li><button onclick="go('events')">Events</button></li>
+                        <li><button onclick="go('support')">Support Us</button></li>
+                        <li><button onclick="go('contact')">Contact</button></li>
+                        <li><button onclick="go('terms')">Terms</button></li>
+                    </ul>
+                </div>
+                <div class="ft-col">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="mailto:raabtians@gmail.com">
+raabtians@gmail.com</a></li>
+                        <li><a href="tel:+919316863838">
+
++91 93168 63838</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="ft-bottom"><span class="ft-copy">© 2026 Raabta Foundation</span>
+                <div class="ft-soc"><a href="https://www.facebook.com/raabtians" target="_blank"><button class="soc-btn">f</button></a><a href="https://www.instagram.com/raabtians" target="_blank"><button class="soc-btn">in</button></a><a href="https://www.youtube.com/@raabtians" target="_blank"><button
+                        class="soc-btn">yt</button></a></div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━
+     ABOUT US
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+    <div class="pg" id="pg-about">
+        <div class="pg-hero">
+            <h1>About Us</h1>
+            <p>Our purpose, vision, values, and the people behind Raabta Foundation.</p>
+            <div class="breadcrumb"><span>Home</span><span class="sep">›</span><span class="cur">About Us</span></div>
+        </div>
+
+        <section style="background:var(--offW)">
+            <div class="c rv">
+                <div class="vm-grid">
+                    <div class="vm-box b-top"><span class="vm-icon">🎯</span>
+                        <div class="vm-t">Our Purpose</div>
+                        <p class="vm-p">To build a society where every individual has equal opportunity, dignity and
+                            safety. A world where no one is left behind and everyone moves forward together.</p>
+                    </div>
+                    <div class="vm-box g-top"><span class="vm-icon">👁</span>
+                        <div class="vm-t">Our Vision</div>
+                        <p class="vm-p">A strong, united and prosperous India where communities support each other — and
+                            where education, health and environment receive the attention they deserve.</p>
+                    </div>
+                    <div class="vm-box au-top"><span class="vm-icon">🌟</span>
+                        <div class="vm-t">Our Mission</div>
+                        <p class="vm-p">To bring lasting change through grassroots action in the areas of education,
+                            healthcare, environmental protection and social harmony across India.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="c rv">
+                <span class="s-tag">Our Values</span>
+                <h2 class="s-h">The principles that define us</h2>
+                <div class="val-grid">
+                    <div class="val-item">
+                        <div class="val-n">01</div>
+                        <div class="val-t">Unity</div>
+                        <p class="val-p">Unity in diversity — bringing together people of every caste, faith and
+                            community under one shared purpose.</p>
+                    </div>
+                    <div class="val-item">
+                        <div class="val-n">02</div>
+                        <div class="val-t">Integrity</div>
+                        <p class="val-p">Transparency and honesty — accountability and ethics at the heart of every
+                            action we take.</p>
+                    </div>
+                    <div class="val-item">
+                        <div class="val-n">03</div>
+                        <div class="val-t">Service</div>
+                        <p class="val-p">Selfless service — reaching the most vulnerable without discrimination of any
+                            kind, always.</p>
+                    </div>
+                    <div class="val-item">
+                        <div class="val-n">04</div>
+                        <div class="val-t">Compassion</div>
+                        <p class="val-p">Treating every person's pain as our own, and always working with sensitivity
+                            and deep empathy.</p>
+                    </div>
+                    <div class="val-item">
+                        <div class="val-n">05</div>
+                        <div class="val-t">Innovation</div>
+                        <p class="val-p">Finding new ways to address old problems — creative and adaptive solutions for
+                            a changing world.</p>
+                    </div>
+                    <div class="val-item">
+                        <div class="val-n">06</div>
+                        <div class="val-t">Empowerment</div>
+                        <p class="val-p">Not giving people fish, but teaching them how to fish — building self-reliance
+                            that lasts a lifetime.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="dark-sec">
+            <div class="c rv">
+                <span class="s-tag">Our Team</span>
+                <h2 class="s-h" style="color:#fff">Dedicated hands, one heart</h2>
+                <p class="s-p" style="margin-bottom:0">Raabta's strength is its people — from diverse backgrounds,
+                    united by one purpose.</p>
+                <div class="g4" style="margin-top:40px">
+                    <div class="team-card">
+                        <div class="t-av">R</div>
+                        <div class="t-name">Rajesh Kumar</div>
+                        <div class="t-role">Founder & President</div>
+                    </div>
+                    <div class="team-card">
+                        <div class="t-av">P</div>
+                        <div class="t-name">Priya Sharma</div>
+                        <div class="t-role">Executive Director</div>
+                    </div>
+                    <div class="team-card">
+                        <div class="t-av">A</div>
+                        <div class="t-name">Anuj Verma</div>
+                        <div class="t-role">Head of Programmes</div>
+                    </div>
+                    <div class="team-card">
+                        <div class="t-av">N</div>
+                        <div class="t-name">Neha Singh</div>
+                        <div class="t-role">Community Coordinator</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cta-band rv">
+            <h2>Walk with us</h2>
+            <p>Take a step today toward a better tomorrow.</p><button class="btn btn-gold" onclick="go('support')">Join
+                Our Mission</button>
+        </div>
+        <div class="gold-bar"></div>
+        <footer>
+            <div class="ft-grid">
+                <div class="ft-brand">
+                    <div class="logo-h">राब्ता</div>
+                    <div class="logo-e">Raabta Foundation</div>
+                    <p>Weaving bonds through service and community.</p>
+                </div>
+                <div class="ft-col">
+                    <h4>Pages</h4>
+                    <ul>
+                        <li><button onclick="go('home')">Home</button></li>
+                        <li><button onclick="go('intro')">Introduction</button></li>
+                        <li><button onclick="go('about')">About Us</button></li>
+                        <li><button onclick="go('work')">Our Work</button></li>
+                    </ul>
+                </div>
+                <div class="ft-col">
+                    <h4>Organisation</h4>
+                    <ul>
+                        <li><button onclick="go('events')">Events</button></li>
+                        <li><button onclick="go('support')">Support Us</button></li>
+                        <li><button onclick="go('contact')">Contact</button></li>
+                        <li><button onclick="go('terms')">Terms</button></li>
+                    </ul>
+                </div>
+                <div class="ft-col">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="mailto:raabtians@gmail.com">
+raabtians@gmail.com</a></li>
+                        <li><a href="tel:+919316863838">
+
++91 93168 63838</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="ft-bottom"><span class="ft-copy">© 2026 Raabta Foundation</span>
+                <div class="ft-soc"><a href="https://www.facebook.com/raabtians" target="_blank"><button class="soc-btn">f</button></a><a href="https://www.instagram.com/raabtians" target="_blank"><button class="soc-btn">in</button></a><a href="https://www.youtube.com/@raabtians" target="_blank"><button
+                        class="soc-btn">yt</button></a></div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━
+     OUR WORK
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+    <div class="pg" id="pg-work">
+        <div class="pg-hero">
+            <h1>Our Work</h1>
+            <p>Raabta's programmes and initiatives — reaching every corner of society.</p>
+            <div class="breadcrumb"><span>Home</span><span class="sep">›</span><span class="cur">Our Work</span></div>
+        </div>
+
+        <section style="background:var(--offW)">
+            <div class="c rv">
+                <span class="s-tag">Our Focus Areas</span>
+                <h2 class="s-h">Four pillars of change</h2>
+                <p class="s-p">We work with focused energy in four key areas — because we know that lasting impact
+                    requires deep roots, not wide but shallow reach.</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="c">
+                <div class="prog-item rv">
+                    <div class="prog-vis bl">📚</div>
+                    <div>
+                        <div class="prog-num">Focus Area 01</div>
+                        <div class="prog-t">Education & Skill Development</div>
+                        <p class="prog-p">We believe education is the greatest equaliser. Through free coaching, digital
+                            literacy programmes and vocational training, we are building a generation of self-reliant,
+                            confident young Indians.</p>
+                        <div class="chips">
+                            <div class="chip">📖 Free Coaching</div>
+                            <div class="chip">💻 Digital Literacy</div>
+                            <div class="chip">🎓 Scholarships</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="prog-item rev rv">
+                    <div class="prog-vis gr">🌱</div>
+                    <div>
+                        <div class="prog-num">Focus Area 02</div>
+                        <div class="prog-t">Environmental Protection</div>
+                        <p class="prog-p">Protecting Mother Earth is our responsibility. Through tree plantation
+                            campaigns, water conservation awareness and single-use plastic elimination drives, we are
+                            actively moving towards a greener future.</p>
+                        <div class="chips">
+                            <div class="chip gc">🌳 Tree Plantation</div>
+                            <div class="chip gc">💧 Water Conservation</div>
+                            <div class="chip gc">♻️ Plastic-Free</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="prog-item rv">
+                    <div class="prog-vis go">🏥</div>
+                    <div>
+                        <div class="prog-num">Focus Area 03</div>
+                        <div class="prog-t">Health & Wellbeing</div>
+                        <p class="prog-p">A healthy society is a strong nation. Through free health camps, blood
+                            donation drives and mental health awareness programmes, we are making healthcare a right,
+                            not a privilege.</p>
+                        <div class="chips">
+                            <div class="chip ac">🩺 Health Camps</div>
+                            <div class="chip ac">🩸 Blood Donation</div>
+                            <div class="chip ac">🧠 Mental Health</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="prog-item rev rv">
+                    <div class="prog-vis sk">🤝</div>
+                    <div>
+                        <div class="prog-num">Focus Area 04</div>
+                        <div class="prog-t">Social Harmony</div>
+                        <p class="prog-p">Unity is our greatest strength. Through community dialogues, cultural
+                            festivals and mutual aid programmes, we build bridges between diverse communities, fostering
+                            brotherhood and trust.</p>
+                        <div class="chips">
+                            <div class="chip">🎭 Cultural Events</div>
+                            <div class="chip">🗣️ Community Dialogue</div>
+                            <div class="chip">🏘️ Village Development</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="dark-sec rv">
+            <div class="c">
+                <span class="s-tag">Our Impact</span>
+                <h2 class="s-h" style="color:#fff;margin-bottom:48px">Achievements so far</h2>
+                <div class="g4">
+                    <div style="text-align:center">
+                        <div class="impact-num">5K<span style="color:var(--goldL)">+</span></div>
+                        <div class="impact-lbl">Families Benefited</div>
+                    </div>
+                    <div style="text-align:center">
+                        <div class="impact-num">10K<span style="color:var(--goldL)">+</span></div>
+                        <div class="impact-lbl">Trees Planted</div>
+                    </div>
+                    <div style="text-align:center">
+                        <div class="impact-num">25<span style="color:var(--goldL)">+</span></div>
+                        <div class="impact-lbl">Health Camps Held</div>
+                    </div>
+                    <div style="text-align:center">
+                        <div class="impact-num">500<span style="color:var(--goldL)">+</span></div>
+                        <div class="impact-lbl">Students Supported</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cta-band rv">
+            <h2>Be a partner in our work</h2>
+            <p>Volunteer your time or contribute financially — every effort matters.</p><button class="btn btn-gold"
+                onclick="go('support')">Get Involved</button>
+        </div>
+        <div class="gold-bar"></div>
+        <footer>
+            <div class="ft-grid">
+                <div class="ft-brand">
+                    <div class="logo-h">राब्ता</div>
+                    <div class="logo-e">Raabta Foundation</div>
+                    <p>Weaving bonds through service and community.</p>
+                </div>
+                <div class="ft-col">
+                    <h4>Pages</h4>
+                    <ul>
+                        <li><button onclick="go('home')">Home</button></li>
+                        <li><button onclick="go('intro')">Introduction</button></li>
+                        <li><button onclick="go('about')">About Us</button></li>
+                        <li><button onclick="go('work')">Our Work</button></li>
+                    </ul>
+                </div>
+                <div class="ft-col">
+                    <h4>Organisation</h4>
+                    <ul>
+                        <li><button onclick="go('events')">Events</button></li>
+                        <li><button onclick="go('support')">Support Us</button></li>
+                        <li><button onclick="go('contact')">Contact</button></li>
+                        <li><button onclick="go('terms')">Terms</button></li>
+                    </ul>
+                </div>
+                <div class="ft-col">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="mailto:raabtians@gmail.com">
+raabtians@gmail.com</a></li>
+                        <li><a href="tel:+919316863838">
+
++91 93168 63838</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="ft-bottom"><span class="ft-copy">© 2026 Raabta Foundation</span>
+                <div class="ft-soc"><a href="https://www.facebook.com/raabtians" target="_blank"><button class="soc-btn">f</button></a><a href="https://www.instagram.com/raabtians" target="_blank"><button class="soc-btn">in</button></a><a href="https://www.youtube.com/@raabtians" target="_blank"><button
+                        class="soc-btn">yt</button></a></div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━
+     EVENTS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+    <div class="pg" id="pg-events">
+        <div class="pg-hero">
+            <h1>Events</h1>
+            <p>Full details on our upcoming and past programmes and initiatives.</p>
+            <div class="breadcrumb"><span>Home</span><span class="sep">›</span><span class="cur">Events</span></div>
+        </div>
+
+        <div class="ev-filter">
+            <div class="f-wrap">
+                <button class="f-btn on">All</button>
+                <button class="f-btn">Health</button>
+                <button class="f-btn">Education</button>
+                <button class="f-btn">Environment</button>
+                <button class="f-btn">Social</button>
+                <button class="f-btn">Cultural</button>
+            </div>
+        </div>
+
+        <div class="ev-list">
+            <div class="c rv">
+                <span class="s-tag" style="margin-bottom:24px;display:block">Upcoming Events</span>
+                <div class="ev-card">
+                    <div class="ev-date-blk">
+                        <div class="ev-day">14</div>
+                        <div class="ev-mo">June</div>
+                        <div class="ev-yr">2026</div>
+                    </div>
+                    <div class="ev-info">
+                        <div class="ev-badge">Health</div>
+                        <div class="ev-t">Free Health Awareness Camp</div>
+                        <div class="ev-meta"><span class="ev-mi">📍 New Delhi</span><span class="ev-mi">🕙 9 AM – 5
+                                PM</span><span class="ev-mi">👥 Free for All</span></div>
+                        <p class="ev-p">Free health check-ups, blood tests, doctor consultations and medicines — all
+                            under one roof. A team of experienced doctors will be present throughout the day.</p>
+                        <div class="ev-acts"><button class="btn-sm btn-sm-bl">Register Now</button><button
+                                class="btn-sm btn-sm-out">Learn More</button></div>
+                    </div>
+                </div>
+                <div class="ev-card">
+                    <div class="ev-date-blk">
+                        <div class="ev-day">5</div>
+                        <div class="ev-mo">July</div>
+                        <div class="ev-yr">2026</div>
+                    </div>
+                    <div class="ev-info">
+                        <div class="ev-badge" style="background:#e3f0ff;color:var(--royal)">Environment</div>
+                        <div class="ev-t">Grand Tree Plantation Drive 2026</div>
+                        <div class="ev-meta"><span class="ev-mi">📍 Delhi NCR</span><span class="ev-mi">🕗 7 AM – 1
+                                PM</span><span class="ev-mi">🌳 Goal: 1,000 Trees</span></div>
+                        <p class="ev-p">An opportunity to make our commitment to the environment tangible. Come with
+                            your family and friends — plant a sapling and invest in a greener future for our children.
+                        </p>
+                        <div class="ev-acts"><button class="btn-sm btn-sm-bl">Register</button><button
+                                class="btn-sm btn-sm-out">Volunteer</button></div>
+                    </div>
+                </div>
+                <div class="ev-card">
+                    <div class="ev-date-blk">
+                        <div class="ev-day">2</div>
+                        <div class="ev-mo">Aug</div>
+                        <div class="ev-yr">2026</div>
+                    </div>
+                    <div class="ev-info">
+                        <div class="ev-badge" style="background:var(--goldP);color:#7a5a10">Education</div>
+                        <div class="ev-t">Youth Leadership Workshop</div>
+                        <div class="ev-meta"><span class="ev-mi">📍 Online + Offline</span><span class="ev-mi">📅 2 Days
+                                (Aug 2–3)</span><span class="ev-mi">🎓 Ages 18–30</span></div>
+                        <p class="ev-p">A special two-day workshop teaching young people leadership skills, public
+                            communication and community service. Participants receive a certificate upon completion.</p>
+                        <div class="ev-acts"><button class="btn-sm btn-sm-bl">Apply Now</button><button
+                                class="btn-sm btn-sm-out">More Info</button></div>
+                    </div>
+                </div>
+                <div class="ev-card">
+                    <div class="ev-date-blk" style="background:var(--greenM)">
+                        <div class="ev-day">15</div>
+                        <div class="ev-mo">Sep</div>
+                        <div class="ev-yr">2026</div>
+                    </div>
+                    <div class="ev-info">
+                        <div class="ev-badge" style="background:#fff0f0;color:#c0392b">Social</div>
+                        <div class="ev-t">Blood Donation Mega Drive</div>
+                        <div class="ev-meta"><span class="ev-mi">📍 5 Cities Simultaneously</span><span class="ev-mi">🕘
+                                8 AM – 6 PM</span><span class="ev-mi">🩸 Ages 18–65</span></div>
+                        <p class="ev-p">Blood donation is the greatest gift — one donation can save three lives. Join us
+                            as we come together across five cities to save thousands of lives in a single day.</p>
+                        <div class="ev-acts"><button class="btn-sm btn-sm-bl">Donate Blood</button><button
+                                class="btn-sm btn-sm-out">Find a Centre</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="gold-bar"></div>
+        <footer>
+            <div class="ft-grid">
+                <div class="ft-brand">
+                    <div class="logo-h">राब्ता</div>
+                    <div class="logo-e">Raabta Foundation</div>
+                    <p>Weaving bonds through service and community.</p>
+                </div>
+                <div class="ft-col">
+                    <h4>Pages</h4>
+                    <ul>
+                        <li><button onclick="go('home')">Home</button></li>
+                        <li><button onclick="go('intro')">Introduction</button></li>
+                        <li><button onclick="go('about')">About Us</button></li>
+                        <li><button onclick="go('work')">Our Work</button></li>
+                    </ul>
+                </div>
+                <div class="ft-col">
+                    <h4>Organisation</h4>
+                    <ul>
+                        <li><button onclick="go('events')">Events</button></li>
+                        <li><button onclick="go('support')">Support Us</button></li>
+                        <li><button onclick="go('contact')">Contact</button></li>
+                        <li><button onclick="go('terms')">Terms</button></li>
+                    </ul>
+                </div>
+                <div class="ft-col">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="mailto:raabtians@gmail.com">
+raabtians@gmail.com</a></li>
+                        <li><a href="tel:+919316863838">
+
++91 93168 63838</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="ft-bottom"><span class="ft-copy">© 2026 Raabta Foundation</span>
+                <div class="ft-soc"><a href="https://www.facebook.com/raabtians" target="_blank"><button class="soc-btn">f</button></a><a href="https://www.instagram.com/raabtians" target="_blank"><button class="soc-btn">in</button></a><a href="https://www.youtube.com/@raabtians" target="_blank"><button
+                        class="soc-btn">yt</button></a></div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━
+     SUPPORT US
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+    <div class="pg" id="pg-support">
+        <div class="pg-hero">
+            <h1>Support Us</h1>
+            <p>Your contribution can bring light into someone's life.</p>
+            <div class="breadcrumb"><span>Home</span><span class="sep">›</span><span class="cur">Support Us</span></div>
+        </div>
+
+        <section style="background:var(--offW)">
+            <div class="c rv">
+                <span class="s-tag">Why Support Us</span>
+                <h2 class="s-h">Your one step, a thousand changes</h2>
+                <div class="ways-grid" style="margin-top:40px">
+                    <div class="way-card"><span class="way-icon">💰</span>
+                        <div class="way-t">Financial Contribution</div>
+                        <p class="way-p">Your donation directly funds education camps, healthcare programmes, and
+                            environmental campaigns that change lives every single day.</p>
+                    </div>
+                    <div class="way-card"><span class="way-icon">🙋</span>
+                        <div class="way-t">Volunteer With Us</div>
+                        <p class="way-p">Give your time and skills. We need volunteers in every area of our work — from
+                            teaching to logistics to creative design.</p>
+                    </div>
+                    <div class="way-card"><span class="way-icon">📢</span>
+                        <div class="way-t">Spread the Word</div>
+                        <p class="way-p">Share our work with your network. Awareness is one of the most powerful
+                            contributions you can make to a cause you believe in.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="c rv">
+                <span class="s-tag">Donation Tiers</span>
+                <h2 class="s-h">Support at your own comfort level</h2>
+                <div class="tier-grid">
+                    <div class="tier">
+                        <div class="tier-name">Friend</div>
+                        <div class="tier-amt">₹500</div>
+                        <div class="tier-per">per month</div>
+                        <ul class="tier-feats">
+                            <li>One child's education for one month</li>
+                            <li>Thank-you certificate</li>
+                            <li>Monthly newsletter</li>
+                        </ul>
+                        <button class="btn btn-outline" style="width:100%">Donate Now</button>
+                    </div>
+                    <div class="tier feat">
+                        <div class="tier-badge">Most Popular</div>
+                        <div class="tier-name">Patron</div>
+                        <div class="tier-amt">₹2,000</div>
+                        <div class="tier-per">per month</div>
+                        <ul class="tier-feats">
+                            <li>Complete support for one family</li>
+                            <li>Special thank-you certificate</li>
+                            <li>Event invitations</li>
+                            <li>Annual impact report</li>
+                        </ul>
+                        <button class="btn btn-gold" style="width:100%">Donate Now</button>
+                    </div>
+                    <div class="tier">
+                        <div class="tier-name">Champion</div>
+                        <div class="tier-amt">₹10K</div>
+                        <div class="tier-per">per month</div>
+                        <ul class="tier-feats">
+                            <li>Full programme sponsorship</li>
+                            <li>Name on our website</li>
+                            <li>VIP event invitations</li>
+                            <li>Personal impact report</li>
+                        </ul>
+                        <button class="btn btn-navy" style="width:100%">Contact Us</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section style="background:var(--offW)">
+            <div class="c rv">
+                <span class="s-tag">Payment Methods</span>
+                <h2 class="s-h">Simple and secure giving</h2>
+                <div class="g3" style="margin-top:40px">
+                    <div class="card" style="text-align:center">
+                        <div style="font-size:44px;margin-bottom:14px">📱</div>
+                        <div class="c-t">UPI / QR Code</div>
+                        <p class="c-p">UPI ID: raabta@upi<br>Donate instantly via PhonePe, GPay or Paytm.</p>
+                    </div>
+                    <div class="card" style="text-align:center">
+                        <div style="font-size:44px;margin-bottom:14px">🏦</div>
+                        <div class="c-t">Bank Transfer</div>
+                        <p class="c-p">A/C: 1234567890<br>IFSC: SBIN0001234<br>Raabta Foundation</p>
+                    </div>
+                    <div class="card" style="text-align:center">
+                        <div style="font-size:44px;margin-bottom:14px">💳</div>
+                        <div class="c-t">Card / Net Banking</div>
+                        <p class="c-p">Debit / Credit Card<br>Net Banking<br>100% Secure SSL Encryption</p>
+                    </div>
+                </div>
+                <div
+                    style="margin-top:32px;padding:20px 28px;background:var(--greenP);border-radius:10px;border:1px solid rgba(30,125,48,.2)">
+                    <p style="font-size:14.5px;color:var(--green)">✅ Donations to Raabta Foundation are eligible for
+                        income tax exemption under Section 80G. A receipt and certificate will be issued for every
+                        donation.</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="cta-band rv">
+            <h2>Together, let us build a better India</h2>
+            <p>Every rupee, every hour, every effort — it all matters.</p><button class="btn btn-gold"
+                onclick="go('contact')">Talk to Us</button>
+        </div>
+        <div class="gold-bar"></div>
+        <footer>
+            <div class="ft-grid">
+                <div class="ft-brand">
+                    <div class="logo-h">राब्ता</div>
+                    <div class="logo-e">Raabta Foundation</div>
+                    <p>Weaving bonds through service and community.</p>
+                </div>
+                <div class="ft-col">
+                    <h4>Pages</h4>
+                    <ul>
+                        <li><button onclick="go('home')">Home</button></li>
+                        <li><button onclick="go('intro')">Introduction</button></li>
+                        <li><button onclick="go('about')">About Us</button></li>
+                        <li><button onclick="go('work')">Our Work</button></li>
+                    </ul>
+                </div>
+                <div class="ft-col">
+                    <h4>Organisation</h4>
+                    <ul>
+                        <li><button onclick="go('events')">Events</button></li>
+                        <li><button onclick="go('support')">Support Us</button></li>
+                        <li><button onclick="go('contact')">Contact</button></li>
+                        <li><button onclick="go('terms')">Terms</button></li>
+                    </ul>
+                </div>
+                <div class="ft-col">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="mailto:raabtians@gmail.com">
+raabtians@gmail.com</a></li>
+                        <li><a href="tel:+919316863838">
+
++91 93168 63838</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="ft-bottom"><span class="ft-copy">© 2026 Raabta Foundation</span>
+                <div class="ft-soc"><a href="https://www.facebook.com/raabtians" target="_blank"><button class="soc-btn">f</button></a><a href="https://www.instagram.com/raabtians" target="_blank"><button class="soc-btn">in</button></a><a href="https://www.youtube.com/@raabtians" target="_blank"><button
+                        class="soc-btn">yt</button></a></div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━
+     CONTACT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+    <div class="pg" id="pg-contact">
+        <div class="pg-hero">
+            <h1>Contact Us</h1>
+            <p>We are always ready to hear from you — reach out anytime.</p>
+            <div class="breadcrumb"><span>Home</span><span class="sep">›</span><span class="cur">Contact</span></div>
+        </div>
+
+        <div class="ct-grid">
+            <div>
+                <div class="ct-info">
+                    <h3>Get In Touch</h3>
+                    <div class="ct-item">
+                        <div class="ct-ico">📍</div>
+                        <div class="ct-dtl"><label>Address</label><span>123, Main Road,<br>New Delhi –
+                                110001<br>India</span></div>
+                    </div>
+                    <div class="ct-item">
+                        <div class="ct-ico">📞</div>
+                        <div class="ct-dtl"><label>Phone</label><span>
+
++91 93168 63838</span></div>
+                    </div>
+                    <div class="ct-item">
+                        <div class="ct-ico">✉️</div>
+                        <div class="ct-dtl"><label>Email</label><span>
+raabtians@gmail.com<br>support@raabta.org</span></div>
+                    </div>
+                    <div class="ct-item">
+                        <div class="ct-ico">🕐</div>
+                        <div class="ct-dtl"><label>Office Hours</label><span>Monday – Saturday<br>9:00 AM – 6:00
+                                PM</span></div>
+                    </div>
+                    <div class="ct-social"><a href="https://www.facebook.com/raabtians" target="_blank"><button class="soc-btn">f</button></a><a href="https://www.instagram.com/raabtians" target="_blank"><button class="soc-btn">in</button></a><a href="https://www.youtube.com/@raabtians" target="_blank"><button
+                            class="soc-btn">yt</button></a><a href="https://whatsapp.com/channel/0029Va7dt580bIdhv6cR092o" target="_blank"><button class="soc-btn">wp</button></a></div>
+                </div>
+            </div>
+            <div class="ct-form rv">
+                <h3>Send Us a Message</h3>
+                <div class="f-row">
+                    <div class="f-grp"><label>Full Name *</label><input type="text" placeholder="Your full name"></div>
+                    <div class="f-grp"><label>Phone Number *</label><input type="tel" placeholder="+91 XXXXX XXXXX">
+                    </div>
+                </div>
+                <div class="f-grp"><label>Email Address</label><input type="email" placeholder="your@email.com"></div>
+                <div class="f-grp"><label>Subject</label>
+                    <select>
+                        <option>-- Select a subject --</option>
+                        <option>Donation / Support</option>
+                        <option>Volunteering</option>
+                        <option>Event Information</option>
+                        <option>Media Enquiry</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+                <div class="f-grp"><label>Message *</label><textarea
+                        placeholder="Write your message here..."></textarea></div>
+                <button class="btn btn-gold"
+                    style="width:100%;justify-content:center;display:flex;align-items:center;gap:8px"
+                    onclick="alert('Your message has been sent successfully! We will get back to you soon.')">📨 Send
+                    Message</button>
+            </div>
+        </div>
+
+        <div style="background:var(--offW);padding:20px 40px 60px">
+            <div class="c">
+                <div
+                    style="background:var(--navy);border-radius:14px;height:280px;display:flex;align-items:center;justify-content:center;border:2px solid rgba(200,160,48,.15)">
+                    <div style="text-align:center">
+                        <div style="font-size:44px;margin-bottom:12px">🗺️</div>
+                        <div style="color:rgba(255,255,255,.45);font-size:15px">New Delhi, India<br><span
+                                style="font-size:12px">Embed Google Maps here</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="gold-bar"></div>
+        <footer>
+            <div class="ft-grid">
+                <div class="ft-brand">
+                    <div class="logo-h">राब्ता</div>
+                    <div class="logo-e">Raabta Foundation</div>
+                    <p>Weaving bonds through service and community.</p>
+                </div>
+                <div class="ft-col">
+                    <h4>Pages</h4>
+                    <ul>
+                        <li><button onclick="go('home')">Home</button></li>
+                        <li><button onclick="go('intro')">Introduction</button></li>
+                        <li><button onclick="go('about')">About Us</button></li>
+                        <li><button onclick="go('work')">Our Work</button></li>
+                    </ul>
+                </div>
+                <div class="ft-col">
+                    <h4>Organisation</h4>
+                    <ul>
+                        <li><button onclick="go('events')">Events</button></li>
+                        <li><button onclick="go('support')">Support Us</button></li>
+                        <li><button onclick="go('contact')">Contact</button></li>
+                        <li><button onclick="go('terms')">Terms</button></li>
+                    </ul>
+                </div>
+                <div class="ft-col">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="mailto:raabtians@gmail.com">
+raabtians@gmail.com</a></li>
+                        <li><a href="tel:+919316863838">
+
++91 93168 63838</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="ft-bottom"><span class="ft-copy">© 2026 Raabta Foundation</span>
+                <div class="ft-soc"><a href="https://www.facebook.com/raabtians" target="_blank"><button class="soc-btn">f</button></a><a href="https://www.instagram.com/raabtians" target="_blank"><button class="soc-btn">in</button></a><a href="https://www.youtube.com/@raabtians" target="_blank"><button
+                        class="soc-btn">yt</button></a></div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━
+     TERMS & CONDITIONS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+    <div class="pg" id="pg-terms">
+        <div class="pg-hero">
+            <h1>Terms & Conditions</h1>
+            <p>Terms of use and privacy policy of Raabta Foundation.</p>
+            <div class="breadcrumb"><span>Home</span><span class="sep">›</span><span class="cur">Terms &
+                    Conditions</span></div>
+        </div>
+
+        <div class="terms-wrap rv">
+            <div class="updated-box">📅 Last Updated: 22 April 2026 | For any questions, please contact 
+raabtians@gmail.com
+            </div>
+
+            <div class="terms-s-t">1. Acceptance of Terms</div>
+            <p class="terms-p">By accessing and using this website, you agree to be bound by the terms and conditions of
+                Raabta Foundation. If you do not agree with any part of these terms, please discontinue use of this
+                website.</p>
+
+            <div class="terms-s-t">2. About the Organisation</div>
+            <p class="terms-p">Raabta Foundation is a non-profit social organisation working in the fields of education,
+                health, environment and social harmony. It is registered under the Societies Registration Act 1860.</p>
+
+            <div class="terms-s-t">3. Website Usage Rules</div>
+            <p class="terms-p">By using this website, you agree to the following:</p>
+            <ul class="terms-ul">
+                <li>Not to use the website's content for any unauthorised or commercial purpose.</li>
+                <li>Not to transmit any unlawful, harmful or objectionable material.</li>
+                <li>Not to engage in any activity that damages the reputation of the organisation.</li>
+                <li>Not to attempt to interfere with the technical systems of the website.</li>
+            </ul>
+
+            <div class="terms-s-t">4. Donation & Financial Policy</div>
+            <p class="terms-p">The following policies apply to all donations made to Raabta Foundation:</p>
+            <ul class="terms-ul">
+                <li>All donations are voluntary and will be used solely for the organisation's stated purposes.</li>
+                <li>Donations are eligible for income tax exemption under Section 80G.</li>
+                <li>A donation receipt will be issued within 7 working days.</li>
+                <li>Donations are generally non-refundable. Please contact us for exceptional circumstances.</li>
+                <li>Annual financial reports are made publicly available.</li>
+            </ul>
+
+            <div class="terms-s-t">5. Privacy Policy</div>
+            <p class="terms-p">We take the protection of your personal information seriously:</p>
+            <ul class="terms-ul">
+                <li>Your personal data (name, email, phone) will only be used for the organisation's purposes.</li>
+                <li>Your information will never be sold or shared with any third party.</li>
+                <li>Payment information is secured by SSL encryption.</li>
+                <li>You may request deletion of your data at any time by contacting us.</li>
+            </ul>
+
+            <div class="terms-s-t">6. Intellectual Property Rights</div>
+            <p class="terms-p">All content on this website — text, images, logo, design — is the intellectual property
+                of Raabta Foundation. Reproduction of any material without written permission is strictly prohibited.
+            </p>
+
+            <div class="terms-s-t">7. Volunteer Policy</div>
+            <ul class="terms-ul">
+                <li>All volunteers must adhere to the organisation's values and code of conduct.</li>
+                <li>Volunteer service is unpaid unless specifically agreed otherwise in writing.</li>
+                <li>The organisation reserves the right to terminate a volunteer arrangement at any time.</li>
+            </ul>
+
+            <div class="terms-s-t">8. Limitation of Liability</div>
+            <p class="terms-p">Raabta Foundation shall not be held liable for any direct or indirect loss arising from
+                the use of this website or reliance upon information contained herein.</p>
+
+            <div class="terms-s-t">9. Grievance Redressal</div>
+            <p class="terms-p">For any complaint or dispute, please first contact us at 
+raabtians@gmail.com. Disputes will
+                be resolved under Indian law within the jurisdiction of the courts of Delhi.</p>
+
+            <div class="terms-s-t">10. Changes to Policy</div>
+            <p class="terms-p">Raabta Foundation reserves the right to amend these terms at any time. Changes take
+                effect immediately upon publication on this website. Continued use of the website constitutes your
+                acceptance of revised terms.</p>
+
+            <div
+                style="margin-top:40px;padding:24px;background:var(--offW);border-radius:10px;border:1px solid var(--border);text-align:center">
+                <p style="font-size:15px;color:var(--textL)">For queries, contact: <a href="#"
+                        style="color:var(--royal);font-weight:600">
+raabtians@gmail.com</a> &nbsp;|&nbsp; <a href="#"
+                        style="color:var(--royal);font-weight:600">
+
++91 93168 63838</a></p>
+            </div>
+        </div>
+
+        <div class="gold-bar"></div>
+        <footer>
+            <div class="ft-grid">
+                <div class="ft-brand">
+                    <div class="logo-h">राब्ता</div>
+                    <div class="logo-e">Raabta Foundation</div>
+                    <p>Weaving bonds through service and community.</p>
+                </div>
+                <div class="ft-col">
+                    <h4>Pages</h4>
+                    <ul>
+                        <li><button onclick="go('home')">Home</button></li>
+                        <li><button onclick="go('intro')">Introduction</button></li>
+                        <li><button onclick="go('about')">About Us</button></li>
+                        <li><button onclick="go('work')">Our Work</button></li>
+                    </ul>
+                </div>
+                <div class="ft-col">
+                    <h4>Organisation</h4>
+                    <ul>
+                        <li><button onclick="go('events')">Events</button></li>
+                        <li><button onclick="go('support')">Support Us</button></li>
+                        <li><button onclick="go('contact')">Contact</button></li>
+                        <li><button onclick="go('terms')">Terms</button></li>
+                    </ul>
+                </div>
+                <div class="ft-col">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="mailto:raabtians@gmail.com">
+raabtians@gmail.com</a></li>
+                        <li><a href="tel:+919316863838">
+
++91 93168 63838</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="ft-bottom">
+  <span class="ft-copy">© 2026 Raabta Foundation</span>
+
+  <div class="ft-soc">
+    <a href="https://facebook.com/yourpage" target="_blank">
+      <button class="soc-btn">f</button>
+    </a>
+
+
+    <a href="https://www.youtube.com/@raabtians" target="_blank"> >
+      <button class="soc-btn">yt</button>
+    </a>
+  </div>
+</div>
+        </footer>
+    </div>
+    <script >
+        const pages = ['home', 'intro', 'about', 'work', 'events', 'support', 'contact', 'terms'];
+        function go(id) {
+            pages.forEach(p => {
+                document.getElementById('pg-' + p).classList.toggle('on', p === id);
+                const nb = document.getElementById('n-' + p);
+                if (nb) nb.classList.toggle('on', p === id);
+            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            observe();
+        }
+        document.querySelectorAll('.f-btn').forEach(b => {
+            b.addEventListener('click', function () {
+                this.closest('.f-wrap').querySelectorAll('.f-btn').forEach(x => x.classList.remove('on'));
+                this.classList.add('on');
+            });
+        });
+        function observe() {
+            const io = new IntersectionObserver(es => { es.forEach(e => { if (e.isIntersecting) e.target.classList.add('in') }) }, { threshold: .1 });
+            document.querySelectorAll('.rv:not(.in)').forEach(el => io.observe(el));
+        }
+        observe();
+    </script>
+</body>
+
+</html>
