@@ -15,6 +15,7 @@ app.set("trust proxy", 1);
 const dataDir = path.join(__dirname, "data");
 const actionsFile = path.join(dataDir, "actions.json");
 const contactsFile = path.join(dataDir, "contacts.json");
+const ordersFile = path.join(dataDir, "orders.json");
 
 let pool = null;
 
@@ -62,6 +63,10 @@ function ensureStorage() {
   if (!fs.existsSync(contactsFile)) {
     fs.writeFileSync(contactsFile, "[]", "utf8");
   }
+
+  if (!fs.existsSync(ordersFile)) {
+    fs.writeFileSync(ordersFile, "[]", "utf8");
+  }
 }
 
 function appendRecord(filePath, record) {
@@ -97,6 +102,21 @@ async function initDatabase() {
       email VARCHAR(255),
       subject VARCHAR(255),
       message TEXT NOT NULL,
+      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    );
+  `);
+
+  await pool.query(`
+    CREATE TABLE IF NOT EXISTS orders (
+      id SERIAL PRIMARY KEY,
+      customer_name VARCHAR(255) NOT NULL,
+      phone VARCHAR(20) NOT NULL,
+      email VARCHAR(255),
+      payment_method VARCHAR(80) NOT NULL,
+      address TEXT NOT NULL,
+      notes TEXT,
+      items JSONB NOT NULL,
+      total_amount NUMERIC(12,2) NOT NULL,
       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     );
   `);
@@ -166,6 +186,62 @@ app.post("/api/contact", async (req, res) => {
   }
 });
 
+app.post("/api/order", async (req, res) => {
+  try {
+    const {
+      name,
+      phone,
+      email,
+      paymentMethod,
+      address,
+      notes,
+      items,
+      totalAmount
+    } = req.body || {};
+
+    if (!name || !phone || !address || !Array.isArray(items) || items.length === 0) {
+      return res.status(400).json({
+        ok: false,
+        message: "Name, phone, address and at least one cart item are required"
+      });
+    }
+
+    if (isProduction) {
+      await pool.query(
+        "INSERT INTO orders (customer_name, phone, email, payment_method, address, notes, items, total_amount) VALUES ($1,$2,$3,$4,$5,$6,$7,$8)",
+        [
+          name,
+          phone,
+          email || "",
+          paymentMethod || "UPI",
+          address,
+          notes || "",
+          items,
+          Number(totalAmount || 0)
+        ]
+      );
+    } else {
+      ensureStorage();
+      appendRecord(ordersFile, {
+        name,
+        phone,
+        email: email || "",
+        paymentMethod: paymentMethod || "UPI",
+        address,
+        notes: notes || "",
+        items,
+        totalAmount: Number(totalAmount || 0),
+        createdAt: new Date().toISOString()
+      });
+    }
+
+    return res.status(201).json({ ok: true, message: "Order placed successfully" });
+  } catch (error) {
+    console.error("Order submit error:", error);
+    return res.status(500).json({ ok: false, message: "Failed to place order" });
+  }
+});
+
 app.get("/api/config", (req, res) => {
   const configuredBase = process.env.PUBLIC_API_BASE_URL;
   const forwardedProto = req.get("x-forwarded-proto");
@@ -210,6 +286,23 @@ app.get("/api/admin/actions", async (_req, res) => {
   } catch (error) {
     console.error("Failed to fetch actions:", error);
     res.status(500).json({ ok: false, message: "Failed to fetch actions" });
+  }
+});
+
+app.get("/api/admin/orders", async (_req, res) => {
+  try {
+    if (isProduction) {
+      const result = await pool.query("SELECT * FROM orders ORDER BY created_at DESC LIMIT 200");
+      res.json({ ok: true, data: result.rows });
+      return;
+    }
+
+    ensureStorage();
+    const content = fs.readFileSync(ordersFile, "utf8");
+    res.json({ ok: true, data: JSON.parse(content) });
+  } catch (error) {
+    console.error("Failed to fetch orders:", error);
+    res.status(500).json({ ok: false, message: "Failed to fetch orders" });
   }
 });
 

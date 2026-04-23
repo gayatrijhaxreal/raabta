@@ -40,6 +40,7 @@
             <li><button onclick="go('about')" id="n-about">About Us</button></li>
             <li><button onclick="go('work')" id="n-work">Our Work</button></li>
             <li><button onclick="go('events')" id="n-events">Events</button></li>
+            <li><button onclick="go('shop')" id="n-shop">Shop</button></li>
             <li><button onclick="go('contact')" id="n-contact">Contact</button></li>
             <li><button onclick="go('terms')" id="n-terms">Terms</button></li>
             <li><button onclick="go('support')" id="n-support" class="cta-btn">Support Us</button></li>
@@ -862,6 +863,100 @@ raabtians@gmail.com</a></li>
             <div class="ft-bottom"><span class="ft-copy">© 2026 Raabta Foundation</span>
                 <div class="ft-soc"><a href="https://www.facebook.com/raabtians" target="_blank"><button class="soc-btn">f</button></a><a href="https://www.instagram.com/raabtians" target="_blank"><button class="soc-btn">in</button></a><a href="https://www.youtube.com/@raabtians" target="_blank"><button
                         class="soc-btn">yt</button></a></div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━
+     SHOP
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+    <div class="pg" id="pg-shop">
+        <div class="pg-hero">
+            <h1>Shop</h1>
+            <p>Support our work by purchasing community-made products.</p>
+            <div class="breadcrumb"><span>Home</span><span class="sep">›</span><span class="cur">Shop</span></div>
+        </div>
+
+        <section style="background:var(--offW)">
+            <div class="c rv">
+                <span class="s-tag">Featured Products</span>
+                <h2 class="s-h">Purposeful products, direct impact</h2>
+                <p class="s-p">Each purchase helps fund education, health, and environmental initiatives by Raabta Foundation.</p>
+                <div class="g3 shop-grid" id="shop-products"></div>
+            </div>
+        </section>
+
+        <section>
+            <div class="c rv shop-checkout-wrap">
+                <div class="shop-cart-box">
+                    <h3>Your Cart</h3>
+                    <div id="shop-cart-items" class="shop-cart-items"></div>
+                    <div class="shop-total-row">
+                        <span>Total</span>
+                        <strong id="shop-cart-total">Rs 0</strong>
+                    </div>
+                </div>
+
+                <div class="ct-form" id="order-form">
+                    <h3>Checkout</h3>
+                    <div class="f-row">
+                        <div class="f-grp"><label>Full Name *</label><input id="order-name" type="text" placeholder="Your full name"></div>
+                        <div class="f-grp"><label>Phone Number *</label><input id="order-phone" type="tel" placeholder="+91 XXXXX XXXXX"></div>
+                    </div>
+                    <div class="f-row">
+                        <div class="f-grp"><label>Email</label><input id="order-email" type="email" placeholder="your@email.com"></div>
+                        <div class="f-grp"><label>Payment Method *</label>
+                            <select id="order-payment">
+                                <option>UPI</option>
+                                <option>Card / Net Banking</option>
+                                <option>Cash on Delivery</option>
+                                <option>Bank Transfer</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="f-grp"><label>Delivery Address *</label><textarea id="order-address" placeholder="House no, area, city, state, pincode"></textarea></div>
+                    <div class="f-grp"><label>Order Notes</label><textarea id="order-notes" placeholder="Any delivery instruction or notes"></textarea></div>
+                    <button class="btn btn-gold" id="order-submit" style="width:100%;justify-content:center;display:flex;align-items:center;gap:8px">Place Order</button>
+                </div>
+            </div>
+        </section>
+
+        <div class="gold-bar"></div>
+        <footer>
+            <div class="ft-grid">
+                <div class="ft-brand">
+                    <div class="logo-h">राब्ता</div>
+                    <div class="logo-e">Raabta Foundation</div>
+                    <p>Weaving bonds through service and community.</p>
+                </div>
+                <div class="ft-col">
+                    <h4>Pages</h4>
+                    <ul>
+                        <li><button onclick="go('home')">Home</button></li>
+                        <li><button onclick="go('intro')">Introduction</button></li>
+                        <li><button onclick="go('about')">About Us</button></li>
+                        <li><button onclick="go('shop')">Shop</button></li>
+                    </ul>
+                </div>
+                <div class="ft-col">
+                    <h4>Organisation</h4>
+                    <ul>
+                        <li><button onclick="go('events')">Events</button></li>
+                        <li><button onclick="go('support')">Support Us</button></li>
+                        <li><button onclick="go('contact')">Contact</button></li>
+                        <li><button onclick="go('terms')">Terms</button></li>
+                    </ul>
+                </div>
+                <div class="ft-col">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="mailto:raabtians@gmail.com">raabtians@gmail.com</a></li>
+                        <li><a href="tel:+919316863838">+91 93168 63838</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="ft-bottom"><span class="ft-copy">© 2026 Raabta Foundation</span>
+                <div class="ft-soc"><a href="https://www.facebook.com/raabtians" target="_blank"><button class="soc-btn">f</button></a><a href="https://www.instagram.com/raabtians" target="_blank"><button class="soc-btn">in</button></a><a href="https://www.youtube.com/@raabtians" target="_blank"><button class="soc-btn">yt</button></a></div>
             </div>
         </footer>
     </div>

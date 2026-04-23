@@ -1,6 +1,31 @@
-const pages = ["home", "intro", "about", "work", "events", "support", "contact", "terms"];
+const pages = ["home", "intro", "about", "work", "events", "shop", "support", "contact", "terms"];
 const defaultApiBaseUrl = "https://raabta-foundation.onrender.com";
 let apiBaseUrl = defaultApiBaseUrl;
+const cartState = [];
+
+const shopCatalog = [
+  {
+    id: "tote-bag",
+    name: "Raabta Canvas Tote Bag",
+    price: 499,
+    description: "Reusable hand-printed tote made by women self-help groups.",
+    emoji: "👜"
+  },
+  {
+    id: "seed-kit",
+    name: "Urban Seed Starter Kit",
+    price: 699,
+    description: "Grow-at-home herb and greens starter kit with guide.",
+    emoji: "🌱"
+  },
+  {
+    id: "community-shirt",
+    name: "Raabta Community T-Shirt",
+    price: 899,
+    description: "Premium cotton support tee. Every purchase funds youth workshops.",
+    emoji: "👕"
+  }
+];
 
 function go(id) {
   pages.forEach((p) => {
@@ -201,6 +226,187 @@ function wireEventFilter() {
   });
 }
 
+function formatInr(amount) {
+  return `Rs ${Number(amount).toLocaleString("en-IN")}`;
+}
+
+function findProductById(productId) {
+  return shopCatalog.find((item) => item.id === productId);
+}
+
+function getCartTotal() {
+  return cartState.reduce((sum, item) => sum + item.price * item.qty, 0);
+}
+
+function renderCart() {
+  const cartItemsEl = document.getElementById("shop-cart-items");
+  const cartTotalEl = document.getElementById("shop-cart-total");
+  if (!cartItemsEl || !cartTotalEl) {
+    return;
+  }
+
+  if (cartState.length === 0) {
+    cartItemsEl.innerHTML = "<p class=\"shop-empty\">Your cart is empty. Add products to continue.</p>";
+    cartTotalEl.textContent = formatInr(0);
+    return;
+  }
+
+  cartItemsEl.innerHTML = cartState.map((item) => `
+    <div class="shop-cart-item">
+      <div>
+        <div class="shop-cart-title">${item.name}</div>
+        <div class="shop-cart-meta">Qty ${item.qty} x ${formatInr(item.price)}</div>
+      </div>
+      <button class="shop-remove" data-remove-item="${item.id}">Remove</button>
+    </div>
+  `).join("");
+
+  cartTotalEl.textContent = formatInr(getCartTotal());
+}
+
+function addToCart(productId) {
+  const product = findProductById(productId);
+  if (!product) {
+    return;
+  }
+
+  const existing = cartState.find((item) => item.id === productId);
+  if (existing) {
+    existing.qty += 1;
+  } else {
+    cartState.push({ ...product, qty: 1 });
+  }
+
+  renderCart();
+}
+
+function removeFromCart(productId) {
+  const index = cartState.findIndex((item) => item.id === productId);
+  if (index >= 0) {
+    cartState.splice(index, 1);
+  }
+  renderCart();
+}
+
+function renderShopProducts() {
+  const productGrid = document.getElementById("shop-products");
+  if (!productGrid) {
+    return;
+  }
+
+  productGrid.innerHTML = shopCatalog.map((item) => `
+    <div class="card shop-card">
+      <div class="shop-emoji">${item.emoji}</div>
+      <div class="c-t">${item.name}</div>
+      <p class="c-p">${item.description}</p>
+      <div class="shop-card-foot">
+        <strong>${formatInr(item.price)}</strong>
+        <button class="btn btn-navy shop-add-btn" data-add-item="${item.id}">Add to Cart</button>
+      </div>
+    </div>
+  `).join("");
+}
+
+function getOrderPayload() {
+  const name = document.getElementById("order-name")?.value.trim() || "";
+  const phone = document.getElementById("order-phone")?.value.trim() || "";
+  const email = document.getElementById("order-email")?.value.trim() || "";
+  const paymentMethod = document.getElementById("order-payment")?.value.trim() || "UPI";
+  const address = document.getElementById("order-address")?.value.trim() || "";
+  const notes = document.getElementById("order-notes")?.value.trim() || "";
+
+  return {
+    name,
+    phone,
+    email,
+    paymentMethod,
+    address,
+    notes,
+    items: cartState.map((item) => ({
+      productId: item.id,
+      name: item.name,
+      unitPrice: item.price,
+      quantity: item.qty,
+      lineTotal: item.price * item.qty
+    })),
+    totalAmount: getCartTotal()
+  };
+}
+
+function clearOrderForm() {
+  ["order-name", "order-phone", "order-email", "order-address", "order-notes"].forEach((id) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.value = "";
+    }
+  });
+  const paymentEl = document.getElementById("order-payment");
+  if (paymentEl) {
+    paymentEl.selectedIndex = 0;
+  }
+}
+
+function wireShop() {
+  const productGrid = document.getElementById("shop-products");
+  const cartItemsEl = document.getElementById("shop-cart-items");
+  const submitOrderButton = document.getElementById("order-submit");
+  if (!productGrid || !cartItemsEl || !submitOrderButton) {
+    return;
+  }
+
+  renderShopProducts();
+  renderCart();
+
+  productGrid.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-add-item]");
+    if (!button) {
+      return;
+    }
+    const productId = button.getAttribute("data-add-item");
+    addToCart(productId);
+    logButtonClick("Add To Cart", { productId });
+  });
+
+  cartItemsEl.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-remove-item]");
+    if (!button) {
+      return;
+    }
+    const productId = button.getAttribute("data-remove-item");
+    removeFromCart(productId);
+    logButtonClick("Remove From Cart", { productId });
+  });
+
+  submitOrderButton.addEventListener("click", async () => {
+    if (cartState.length === 0) {
+      alert("Please add at least one product to cart.");
+      return;
+    }
+
+    const payload = getOrderPayload();
+    if (!payload.name || !payload.phone || !payload.address) {
+      alert("Please fill Name, Phone Number, and Delivery Address.");
+      return;
+    }
+
+    submitOrderButton.disabled = true;
+    submitOrderButton.textContent = "Placing Order...";
+
+    const result = await postJson(apiUrl("/api/order"), payload, 1);
+    if (result.ok) {
+      alert("Order placed successfully. Our team will contact you for confirmation.");
+      cartState.splice(0, cartState.length);
+      renderCart();
+      clearOrderForm();
+    } else {
+      alert("Unable to place order right now. Please try again in a moment.");
+    }
+
+    submitOrderButton.disabled = false;
+    submitOrderButton.textContent = "Place Order";
+  });
+}
+
 function wireContactSubmission() {
   const submitButton = document.getElementById("contact-submit");
   if (!submitButton) {
@@ -253,5 +459,6 @@ loadApiConfig().finally(() => {
   wireDonationButtons();
   wireGenericTracking();
   wireContactSubmission();
+  wireShop();
   observe();
 });
