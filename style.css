@@ -1012,6 +1012,193 @@
             color: rgba(255, 255, 255, .4)
         }
 
+        /* ── ABOUT POETRY PAGE ── */
+        .about-poetry-wrap {
+            background:
+                radial-gradient(circle at 8% 10%, rgba(20, 48, 160, .08), transparent 42%),
+                radial-gradient(circle at 92% 0%, rgba(200, 160, 48, .15), transparent 35%),
+                linear-gradient(180deg, #f9fbff 0%, #fff 68%);
+            padding: 70px 40px 56px
+        }
+
+        .about-poetry-intro {
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            background: rgba(255, 255, 255, .95);
+            box-shadow: 0 22px 48px rgba(9, 22, 80, .08);
+            padding: 36px 34px
+        }
+
+        .about-poetry-label {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 14px;
+            background: var(--goldP);
+            color: #745610;
+            letter-spacing: .13em;
+            text-transform: uppercase;
+            font-size: 10px;
+            font-weight: 700;
+            margin-bottom: 14px
+        }
+
+        .about-poetry-intro h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(28px, 4.2vw, 44px);
+            line-height: 1.15;
+            color: var(--navy);
+            margin-bottom: 18px
+        }
+
+        .about-poetry-intro p {
+            font-size: 15px;
+            line-height: 1.9;
+            color: var(--textM);
+            margin-bottom: 12px
+        }
+
+        .about-poetry-intro p:last-child {
+            margin-bottom: 0
+        }
+
+        .about-poetry-pillars {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+            margin-top: 24px
+        }
+
+        .about-poetry-card {
+            border: 1px solid rgba(20, 48, 160, .14);
+            border-radius: 14px;
+            background: #fff;
+            padding: 24px 22px
+        }
+
+        .about-poetry-card-kicker {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .2em;
+            color: var(--royal);
+            text-transform: uppercase;
+            margin-bottom: 12px
+        }
+
+        .about-poetry-card p {
+            color: var(--textL);
+            line-height: 1.82;
+            font-size: 14.5px
+        }
+
+        .about-poetry-list {
+            list-style: none
+        }
+
+        .about-poetry-list li {
+            color: var(--textL);
+            font-size: 14px;
+            line-height: 1.8;
+            padding: 0 0 8px 18px;
+            position: relative
+        }
+
+        .about-poetry-list li::before {
+            content: '';
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--gold);
+            position: absolute;
+            left: 0;
+            top: 9px
+        }
+
+        .about-poetry-do {
+            margin-top: 22px;
+            border: 1px solid rgba(20, 48, 160, .12);
+            border-radius: 14px;
+            background: #fff;
+            overflow: hidden
+        }
+
+        .about-poetry-do-head {
+            padding: 24px 24px 18px;
+            border-bottom: 1px solid var(--border)
+        }
+
+        .about-poetry-do-head h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 30px;
+            line-height: 1.2;
+            color: var(--navy)
+        }
+
+        .about-poetry-do-head p {
+            margin-top: 8px;
+            color: var(--textL);
+            font-size: 14px;
+            line-height: 1.75
+        }
+
+        .about-poetry-do-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr)
+        }
+
+        .about-poetry-do-grid article {
+            padding: 18px 22px;
+            border-right: 1px solid var(--border);
+            border-bottom: 1px solid var(--border)
+        }
+
+        .about-poetry-do-grid article:nth-child(2n) {
+            border-right: none
+        }
+
+        .about-poetry-do-grid article:nth-last-child(-n+2) {
+            border-bottom: none
+        }
+
+        .about-poetry-do-grid span {
+            display: inline-block;
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            color: rgba(20, 48, 160, .18);
+            margin-bottom: 8px
+        }
+
+        .about-poetry-do-grid p {
+            font-size: 14px;
+            line-height: 1.75;
+            color: var(--textM)
+        }
+
+        .about-poetry-why {
+            padding: 44px 40px 30px
+        }
+
+        .about-poetry-why .c {
+            border-left: 4px solid var(--gold);
+            padding-left: 20px
+        }
+
+        .about-poetry-why h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 34px;
+            color: var(--navy);
+            margin-bottom: 10px
+        }
+
+        .about-poetry-why p {
+            font-size: 16px;
+            line-height: 1.9;
+            color: var(--textM)
+        }
+
+        .about-poetry-cta {
+            margin-top: 10px
+        }
+
         /* ── EVENTS ── */
         .ev-filter {
             padding: 22px 40px;
@@ -1934,6 +2121,8 @@
             .g4,
             .vm-grid,
             .val-grid,
+            .about-poetry-pillars,
+            .about-poetry-do-grid,
             .ab-split,
             .prog-item,
             .tier-grid,
@@ -1959,5 +2148,28 @@
 
             .tl-wrap::before {
                 left: 42px
+            }
+
+            .about-poetry-wrap,
+            .about-poetry-why {
+                padding-left: 20px;
+                padding-right: 20px
+            }
+
+            .about-poetry-do-grid article,
+            .about-poetry-do-grid article:nth-child(2n) {
+                border-right: none
+            }
+
+            .about-poetry-do-grid article:nth-last-child(-n+2) {
+                border-bottom: 1px solid var(--border)
+            }
+
+            .about-poetry-do-grid article:last-child {
+                border-bottom: none
+            }
+
+            .about-poetry-why h3 {
+                font-size: 28px
             }
         }
