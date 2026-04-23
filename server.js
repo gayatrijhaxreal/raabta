@@ -41,8 +41,8 @@ app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", origin);
     res.setHeader("Vary", "Origin");
   }
-  res.setHeader("Access-Control-Allow-Methods", "GET,POST,OPTIONS");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  res.setHeader("Access-Control-Allow-Methods", "GET,POST,PATCH,OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type,x-admin-token,authorization");
 
   if (req.method === "OPTIONS") {
     return res.status(204).end();
@@ -119,6 +119,8 @@ async function initDatabase() {
       email VARCHAR(255),
       subject VARCHAR(255),
       message TEXT NOT NULL,
+      status VARCHAR(40) DEFAULT 'New',
+      admin_note TEXT DEFAULT '',
       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     );
   `);
@@ -147,6 +149,8 @@ async function initDatabase() {
   await pool.query(`ALTER TABLE orders ADD COLUMN IF NOT EXISTS items JSONB;`);
   await pool.query(`ALTER TABLE orders ADD COLUMN IF NOT EXISTS total_amount NUMERIC(12,2);`);
   await pool.query(`ALTER TABLE orders ADD COLUMN IF NOT EXISTS created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP;`);
+  await pool.query(`ALTER TABLE contacts ADD COLUMN IF NOT EXISTS status VARCHAR(40) DEFAULT 'New';`);
+  await pool.query(`ALTER TABLE contacts ADD COLUMN IF NOT EXISTS admin_note TEXT DEFAULT '';`);
 
   console.log("Database initialized (Postgres)");
 }
@@ -284,18 +288,104 @@ app.get("/api/config", (req, res) => {
 
 app.get("/api/admin/contacts", requireAdminAuth, async (_req, res) => {
   try {
+    const queryText = (_req.query.q || "").toString().trim();
+    const statusFilter = (_req.query.status || "all").toString().trim();
+
     if (isProduction) {
-      const result = await pool.query("SELECT * FROM contacts ORDER BY created_at DESC LIMIT 100");
+      const params = [];
+      let whereClause = "";
+
+      if (queryText) {
+        params.push(`%${queryText}%`);
+        whereClause += ` WHERE (name ILIKE $${params.length} OR phone ILIKE $${params.length} OR email ILIKE $${params.length} OR subject ILIKE $${params.length} OR message ILIKE $${params.length})`;
+      }
+
+      if (statusFilter && statusFilter.toLowerCase() !== "all") {
+        params.push(statusFilter);
+        whereClause += whereClause ? ` AND status = $${params.length}` : ` WHERE status = $${params.length}`;
+      }
+
+      const result = await pool.query(`SELECT * FROM contacts${whereClause} ORDER BY created_at DESC LIMIT 300`, params);
       res.json({ ok: true, data: result.rows });
       return;
     }
 
     ensureStorage();
     const content = fs.readFileSync(contactsFile, "utf8");
-    res.json({ ok: true, data: JSON.parse(content) });
+    const rawItems = JSON.parse(content);
+    const normalizedItems = rawItems.map((item, index) => ({
+      id: item.id || index + 1,
+      ...item,
+      status: item.status || "New",
+      admin_note: item.admin_note || ""
+    }));
+
+    const filtered = normalizedItems.filter((item) => {
+      const matchesStatus = statusFilter.toLowerCase() === "all" || (item.status || "New") === statusFilter;
+      if (!matchesStatus) {
+        return false;
+      }
+
+      if (!queryText) {
+        return true;
+      }
+
+      const haystack = `${item.name || ""} ${item.phone || ""} ${item.email || ""} ${item.subject || ""} ${item.message || ""}`.toLowerCase();
+      return haystack.includes(queryText.toLowerCase());
+    });
+
+    res.json({ ok: true, data: filtered.reverse().slice(0, 300) });
   } catch (error) {
     console.error("Failed to fetch contacts:", error);
     res.status(500).json({ ok: false, message: "Failed to fetch contacts" });
+  }
+});
+
+app.patch("/api/admin/contacts/:id", requireAdminAuth, async (req, res) => {
+  try {
+    const recordId = Number(req.params.id);
+    const { status, adminNote } = req.body || {};
+    const safeStatus = (status || "New").toString().slice(0, 40);
+    const safeNote = (adminNote || "").toString().slice(0, 3000);
+
+    if (!recordId || Number.isNaN(recordId)) {
+      return res.status(400).json({ ok: false, message: "Invalid contact id" });
+    }
+
+    if (isProduction) {
+      const result = await pool.query(
+        "UPDATE contacts SET status = $1, admin_note = $2 WHERE id = $3 RETURNING id, status, admin_note",
+        [safeStatus, safeNote, recordId]
+      );
+
+      if (!result.rowCount) {
+        return res.status(404).json({ ok: false, message: "Contact not found" });
+      }
+
+      return res.json({ ok: true, data: result.rows[0] });
+    }
+
+    ensureStorage();
+    const content = fs.readFileSync(contactsFile, "utf8");
+    const items = JSON.parse(content);
+    const index = items.findIndex((item, idx) => Number(item.id || idx + 1) === recordId);
+
+    if (index < 0) {
+      return res.status(404).json({ ok: false, message: "Contact not found" });
+    }
+
+    items[index] = {
+      ...items[index],
+      id: items[index].id || recordId,
+      status: safeStatus,
+      admin_note: safeNote
+    };
+
+    fs.writeFileSync(contactsFile, JSON.stringify(items, null, 2), "utf8");
+    return res.json({ ok: true, data: { id: recordId, status: safeStatus, admin_note: safeNote } });
+  } catch (error) {
+    console.error("Failed to update contact:", error);
+    return res.status(500).json({ ok: false, message: "Failed to update contact" });
   }
 });
 
@@ -318,15 +408,39 @@ app.get("/api/admin/actions", requireAdminAuth, async (_req, res) => {
 
 app.get("/api/admin/orders", requireAdminAuth, async (_req, res) => {
   try {
+    const queryText = (_req.query.q || "").toString().trim();
+
     if (isProduction) {
-      const result = await pool.query("SELECT * FROM orders ORDER BY created_at DESC LIMIT 200");
+      if (!queryText) {
+        const result = await pool.query("SELECT * FROM orders ORDER BY created_at DESC LIMIT 300");
+        res.json({ ok: true, data: result.rows });
+        return;
+      }
+
+      const result = await pool.query(
+        "SELECT * FROM orders WHERE customer_name ILIKE $1 OR phone ILIKE $1 OR email ILIKE $1 OR address ILIKE $1 ORDER BY created_at DESC LIMIT 300",
+        [`%${queryText}%`]
+      );
       res.json({ ok: true, data: result.rows });
       return;
     }
 
     ensureStorage();
     const content = fs.readFileSync(ordersFile, "utf8");
-    res.json({ ok: true, data: JSON.parse(content) });
+    const rawItems = JSON.parse(content);
+    const normalizedItems = rawItems.map((item, index) => ({
+      id: item.id || index + 1,
+      ...item
+    }));
+
+    const filtered = !queryText
+      ? normalizedItems
+      : normalizedItems.filter((item) => {
+          const haystack = `${item.name || ""} ${item.customer_name || ""} ${item.phone || ""} ${item.email || ""} ${item.address || ""}`.toLowerCase();
+          return haystack.includes(queryText.toLowerCase());
+        });
+
+    res.json({ ok: true, data: filtered.reverse().slice(0, 300) });
   } catch (error) {
     console.error("Failed to fetch orders:", error);
     res.status(500).json({ ok: false, message: "Failed to fetch orders" });

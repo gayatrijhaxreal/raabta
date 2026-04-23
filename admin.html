@@ -24,12 +24,12 @@
   <main class="admin-main">
     <section class="panel auth-panel">
       <h2>Admin Access</h2>
-      <p>Enter your admin token to load contact form records.</p>
+      <p>Enter your admin token to manage contacts and orders.</p>
       <form id="auth-form" class="auth-form">
         <label for="admin-token">Admin Token</label>
         <input id="admin-token" type="password" placeholder="Enter ADMIN_TOKEN" autocomplete="current-password" required>
         <div class="auth-actions">
-          <button id="login-btn" type="submit">Load Contacts</button>
+          <button id="login-btn" type="submit">Load Dashboard</button>
           <button id="logout-btn" type="button" class="ghost">Clear Token</button>
         </div>
       </form>
@@ -37,12 +37,32 @@
     </section>
 
     <section class="panel table-panel">
-      <div class="table-head">
-        <h2>Contact Form Database</h2>
-        <button id="refresh-btn" type="button" class="ghost">Refresh</button>
+      <div class="tab-row">
+        <button id="tab-contacts" class="tab-btn on" type="button">Contacts</button>
+        <button id="tab-orders" class="tab-btn" type="button">Orders</button>
       </div>
-      <div class="table-wrap">
-        <table>
+
+      <div class="filters">
+        <input id="search-input" type="text" placeholder="Search by name, phone, email...">
+        <select id="status-filter">
+          <option value="all">All Status</option>
+          <option value="New">New</option>
+          <option value="Contacted">Contacted</option>
+          <option value="Converted">Converted</option>
+          <option value="Closed">Closed</option>
+        </select>
+      </div>
+
+      <div class="table-head">
+        <h2 id="table-title">Contact Form Database</h2>
+        <div class="table-actions">
+          <button id="export-btn" type="button" class="ghost">Export CSV</button>
+          <button id="refresh-btn" type="button" class="ghost">Refresh</button>
+        </div>
+      </div>
+
+      <div class="table-wrap" id="contacts-wrap">
+        <table id="contacts-table">
           <thead>
             <tr>
               <th>ID</th>
@@ -51,12 +71,37 @@
               <th>Email</th>
               <th>Subject</th>
               <th>Message</th>
+              <th>Status</th>
+              <th>Admin Note</th>
               <th>Date</th>
             </tr>
           </thead>
           <tbody id="contacts-body">
             <tr>
-              <td colspan="7" class="empty">Enter admin token and click Load Contacts.</td>
+              <td colspan="9" class="empty">Enter admin token and click Load Dashboard.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="table-wrap hidden" id="orders-wrap">
+        <table id="orders-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Customer</th>
+              <th>Phone</th>
+              <th>Email</th>
+              <th>Payment</th>
+              <th>Address</th>
+              <th>Items</th>
+              <th>Total</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody id="orders-body">
+            <tr>
+              <td colspan="9" class="empty">Switch to Orders after loading dashboard.</td>
             </tr>
           </tbody>
         </table>
