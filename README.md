@@ -288,6 +288,51 @@ Before final client handover:
 4. Share only required credentials.
 5. Keep a signed handover acknowledgement.
 
+## 18) Change Admin Token (Safe Rotation Procedure)
+
+Use this whenever team members change, client handover happens, or token leakage is suspected.
+
+### A. Generate a strong new token
+
+Run locally:
+
+```bash
+node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+```
+
+Copy the output securely.
+
+### B. Update token on Render
+
+1. Open Render dashboard -> backend service (`raabta-foundation`).
+2. Go to Environment.
+3. Update `ADMIN_TOKEN` with the new value.
+4. Save changes and redeploy service.
+
+### C. Update admin browser session
+
+1. Open `admin.html`.
+2. Click `Clear Token`.
+3. Paste new token and click `Load Dashboard`.
+
+### D. Verify security
+
+After redeploy, confirm:
+
+1. Old token no longer works (`401 Unauthorized`).
+2. New token works for:
+   - `GET /api/admin/contacts`
+   - `GET /api/admin/orders`
+   - Contact status/note update in admin UI
+
+### E. Emergency rollback
+
+If team cannot access admin after change:
+
+1. Re-enter previous known-good token in Render.
+2. Save and redeploy.
+3. Re-run verification, then rotate again carefully.
+
 ---
 
 If you follow this README step-by-step, you can deploy and maintain this project independently at any time.
