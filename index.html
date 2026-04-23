@@ -16,7 +16,7 @@
 
     <!-- ━━━━ NAVBAR ━━━━ -->
     <nav class="nav">
-        <div class="nav-logo" onclick="go('home')">
+        <a class="nav-logo" href="./" onclick="go('home'); return false;">
             <!-- Logo Circle — mirrors the actual Raabta logo -->
             <div class="logo-circle">
                 <div class="logo-sky"></div>
@@ -33,7 +33,7 @@
                 <span class="nav-title">Raabta</span>
                 <span class="nav-sub">Foundation</span>
             </div>
-        </div>
+        </a>
         <ul class="nav-links" id="nl">
             <li><button onclick="go('home')" id="n-home" class="on">Home</button></li>
             <li><button onclick="go('intro')" id="n-intro">Introduction</button></li>

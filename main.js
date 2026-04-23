@@ -1,5 +1,6 @@
 const pages = ["home", "intro", "about", "work", "events", "support", "contact", "terms"];
-let apiBaseUrl = window.location.origin;
+const defaultApiBaseUrl = "https://raabta-foundation.onrender.com";
+let apiBaseUrl = defaultApiBaseUrl;
 
 function go(id) {
   pages.forEach((p) => {
@@ -53,7 +54,18 @@ function apiUrl(path) {
 
 async function loadApiConfig() {
   try {
-    const response = await fetch("/api/config");
+    if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
+      const response = await fetch("/api/config");
+      if (response.ok) {
+        const data = await response.json();
+        if (data && typeof data.apiBaseUrl === "string" && data.apiBaseUrl.trim()) {
+          apiBaseUrl = data.apiBaseUrl.replace(/\/$/, "");
+        }
+      }
+      return;
+    }
+
+    const response = await fetch(`${defaultApiBaseUrl}/api/config`);
     if (!response.ok) {
       return;
     }
@@ -62,7 +74,7 @@ async function loadApiConfig() {
       apiBaseUrl = data.apiBaseUrl.replace(/\/$/, "");
     }
   } catch (_error) {
-    apiBaseUrl = window.location.origin;
+    apiBaseUrl = defaultApiBaseUrl;
   }
 }
 
