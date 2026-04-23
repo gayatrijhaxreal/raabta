@@ -216,7 +216,7 @@ app.post("/api/order", async (req, res) => {
           paymentMethod || "UPI",
           address,
           notes || "",
-          items,
+          JSON.stringify(items),
           Number(totalAmount || 0)
         ]
       );
