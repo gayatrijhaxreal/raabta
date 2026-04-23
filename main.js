@@ -35,17 +35,36 @@ function observe() {
   document.querySelectorAll(".rv:not(.in)").forEach((el) => io.observe(el));
 }
 
-async function postJson(url, payload) {
-  try {
-    const response = await fetch(url, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload)
-    });
-    return response.ok;
-  } catch (_error) {
-    return false;
+async function postJson(url, payload, retries = 1) {
+  let lastError = null;
+
+  for (let attempt = 0; attempt <= retries; attempt += 1) {
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+
+      if (response.ok) {
+        return { ok: true, status: response.status };
+      }
+
+      lastError = new Error(`HTTP ${response.status}`);
+    } catch (error) {
+      lastError = error;
+    }
+
+    if (attempt < retries) {
+      await new Promise((resolve) => setTimeout(resolve, 1200));
+    }
   }
+
+  return {
+    ok: false,
+    status: 0,
+    error: lastError ? lastError.message : "Unknown request error"
+  };
 }
 
 function apiUrl(path) {
@@ -89,6 +108,8 @@ function logButtonClick(label, details) {
     label,
     page: currentPageId(),
     details: details || {}
+  }).catch(() => {
+    // Ignore non-critical analytics failures.
   });
 }
 
@@ -201,15 +222,15 @@ function wireContactSubmission() {
     submitButton.disabled = true;
     submitButton.textContent = "Sending...";
 
-    const ok = await postJson(apiUrl("/api/contact"), {
+    const result = await postJson(apiUrl("/api/contact"), {
       name,
       phone,
       email,
       subject,
       message
-    });
+    }, 2);
 
-    if (ok) {
+    if (result.ok) {
       alert("Your message has been sent successfully. We will get back to you soon.");
       document.getElementById("contact-name").value = "";
       document.getElementById("contact-phone").value = "";
@@ -217,7 +238,8 @@ function wireContactSubmission() {
       document.getElementById("contact-subject").selectedIndex = 0;
       document.getElementById("contact-message").value = "";
     } else {
-      alert("Unable to send right now. Please try again in a moment.");
+      console.error("Contact submit failed:", result);
+      alert("Unable to send right now. Please wait 10 seconds and try again.");
     }
 
     submitButton.disabled = false;
