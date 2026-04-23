@@ -10,6 +10,8 @@ const app = express();
 const port = process.env.PORT || 3000;
 const isProduction = process.env.NODE_ENV === "production";
 
+app.set("trust proxy", 1);
+
 const dataDir = path.join(__dirname, "data");
 const actionsFile = path.join(dataDir, "actions.json");
 const contactsFile = path.join(dataDir, "contacts.json");
@@ -166,7 +168,10 @@ app.post("/api/contact", async (req, res) => {
 
 app.get("/api/config", (req, res) => {
   const configuredBase = process.env.PUBLIC_API_BASE_URL;
-  const requestOrigin = `${req.protocol}://${req.get("host")}`;
+  const forwardedProto = req.get("x-forwarded-proto");
+  const proto = (forwardedProto || req.protocol || "https").split(",")[0].trim();
+  const normalizedProto = isProduction ? "https" : proto;
+  const requestOrigin = `${normalizedProto}://${req.get("host")}`;
 
   res.json({
     ok: true,
