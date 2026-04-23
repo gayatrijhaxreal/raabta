@@ -121,6 +121,16 @@ async function initDatabase() {
     );
   `);
 
+  await pool.query(`ALTER TABLE orders ADD COLUMN IF NOT EXISTS customer_name VARCHAR(255);`);
+  await pool.query(`ALTER TABLE orders ADD COLUMN IF NOT EXISTS phone VARCHAR(20);`);
+  await pool.query(`ALTER TABLE orders ADD COLUMN IF NOT EXISTS email VARCHAR(255);`);
+  await pool.query(`ALTER TABLE orders ADD COLUMN IF NOT EXISTS payment_method VARCHAR(80);`);
+  await pool.query(`ALTER TABLE orders ADD COLUMN IF NOT EXISTS address TEXT;`);
+  await pool.query(`ALTER TABLE orders ADD COLUMN IF NOT EXISTS notes TEXT;`);
+  await pool.query(`ALTER TABLE orders ADD COLUMN IF NOT EXISTS items JSONB;`);
+  await pool.query(`ALTER TABLE orders ADD COLUMN IF NOT EXISTS total_amount NUMERIC(12,2);`);
+  await pool.query(`ALTER TABLE orders ADD COLUMN IF NOT EXISTS created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP;`);
+
   console.log("Database initialized (Postgres)");
 }
 
@@ -208,7 +218,7 @@ app.post("/api/order", async (req, res) => {
 
     if (isProduction) {
       await pool.query(
-        "INSERT INTO orders (customer_name, phone, email, payment_method, address, notes, items, total_amount) VALUES ($1,$2,$3,$4,$5,$6,$7,$8)",
+        "INSERT INTO orders (customer_name, phone, email, payment_method, address, notes, items, total_amount) VALUES ($1,$2,$3,$4,$5,$6,$7::jsonb,$8::numeric)",
         [
           name,
           phone,
