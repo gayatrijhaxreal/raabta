@@ -3,6 +3,7 @@
 Use this at final delivery and take written confirmation from the client.
 
 ## A) Business Handover
+
 - [ ] Live website URL shared
 - [ ] Admin dashboard URL shared
 - [ ] Final feature list shared
@@ -10,6 +11,7 @@ Use this at final delivery and take written confirmation from the client.
 - [ ] Training call completed (optional)
 
 ## B) Access and Ownership
+
 - [ ] Domain registrar account access transferred
 - [ ] Frontend hosting account access transferred
 - [ ] Backend hosting account access transferred
@@ -17,18 +19,21 @@ Use this at final delivery and take written confirmation from the client.
 - [ ] Database access shared (read/write/admin as agreed)
 
 ## C) Credentials and Secrets
+
 - [ ] Admin token shared securely
 - [ ] Hosting environment variables documented
 - [ ] Rotated all temporary developer passwords
 - [ ] 2FA enabled on client-owned accounts
 
 ## D) Environment Variables (for current project)
+
 - [ ] DATABASE_URL
 - [ ] ADMIN_TOKEN
 - [ ] PUBLIC_API_BASE_URL (if used in deployment setup)
 - [ ] NODE_ENV=production
 
 ## E) Technical Validation Before Sign-off
+
 - [ ] Contact form submission works
 - [ ] Contact data visible in admin panel
 - [ ] Shop cart and checkout works
@@ -38,12 +43,14 @@ Use this at final delivery and take written confirmation from the client.
 - [ ] SSL active on frontend and backend
 
 ## F) Legal and Commercial
+
 - [ ] Final invoice paid
 - [ ] Copyright/IP transfer note shared
 - [ ] Scope completion acknowledgement received
 - [ ] Maintenance plan accepted/rejected in writing
 
 ## G) Domain/Hosting Change Readiness (Future)
+
 - [ ] DNS records documented (A/CNAME)
 - [ ] Current backend URL documented
 - [ ] CORS allowed origins documented
@@ -51,6 +58,7 @@ Use this at final delivery and take written confirmation from the client.
 - [ ] Rollback plan prepared
 
 ## Client Sign-off
+
 Client Name: [ ]
 
 Date: [ ]
