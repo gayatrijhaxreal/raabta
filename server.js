@@ -51,6 +51,23 @@ app.use((req, res, next) => {
   return next();
 });
 
+function requireAdminAuth(req, res, next) {
+  const configuredToken = process.env.ADMIN_TOKEN;
+  if (!configuredToken) {
+    return next();
+  }
+
+  const headerToken = req.get("x-admin-token");
+  const bearerToken = (req.get("authorization") || "").replace(/^Bearer\s+/i, "");
+  const provided = headerToken || bearerToken;
+
+  if (provided !== configuredToken) {
+    return res.status(401).json({ ok: false, message: "Unauthorized" });
+  }
+
+  return next();
+}
+
 function ensureStorage() {
   if (!fs.existsSync(dataDir)) {
     fs.mkdirSync(dataDir, { recursive: true });
@@ -265,7 +282,7 @@ app.get("/api/config", (req, res) => {
   });
 });
 
-app.get("/api/admin/contacts", async (_req, res) => {
+app.get("/api/admin/contacts", requireAdminAuth, async (_req, res) => {
   try {
     if (isProduction) {
       const result = await pool.query("SELECT * FROM contacts ORDER BY created_at DESC LIMIT 100");
@@ -282,7 +299,7 @@ app.get("/api/admin/contacts", async (_req, res) => {
   }
 });
 
-app.get("/api/admin/actions", async (_req, res) => {
+app.get("/api/admin/actions", requireAdminAuth, async (_req, res) => {
   try {
     if (isProduction) {
       const result = await pool.query("SELECT * FROM actions ORDER BY created_at DESC LIMIT 200");
@@ -299,7 +316,7 @@ app.get("/api/admin/actions", async (_req, res) => {
   }
 });
 
-app.get("/api/admin/orders", async (_req, res) => {
+app.get("/api/admin/orders", requireAdminAuth, async (_req, res) => {
   try {
     if (isProduction) {
       const result = await pool.query("SELECT * FROM orders ORDER BY created_at DESC LIMIT 200");

@@ -619,6 +619,105 @@
             color: var(--textL)
         }
 
+        .shop-grid {
+            margin-top: 36px;
+        }
+
+        .shop-card {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .shop-emoji {
+            font-size: 34px;
+            line-height: 1;
+        }
+
+        .shop-card-foot {
+            margin-top: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .shop-add-btn {
+            padding: 9px 16px;
+            font-size: 13px;
+        }
+
+        .shop-checkout-wrap {
+            display: grid;
+            grid-template-columns: 1fr 1.4fr;
+            gap: 28px;
+            align-items: start;
+        }
+
+        .shop-cart-box {
+            background: var(--offW);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 22px;
+        }
+
+        .shop-cart-box h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            margin-bottom: 16px;
+            color: var(--text);
+        }
+
+        .shop-cart-items {
+            display: grid;
+            gap: 10px;
+        }
+
+        .shop-cart-item {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 10px 12px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: #fff;
+        }
+
+        .shop-cart-title {
+            font-weight: 600;
+            color: var(--text);
+            font-size: 14px;
+        }
+
+        .shop-cart-meta {
+            font-size: 12px;
+            color: var(--textL);
+            margin-top: 3px;
+        }
+
+        .shop-remove {
+            border: none;
+            background: transparent;
+            color: #b03030;
+            cursor: pointer;
+            font-size: 12px;
+            text-decoration: underline;
+        }
+
+        .shop-total-row {
+            margin-top: 14px;
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px dashed var(--border);
+            padding-top: 12px;
+            font-size: 16px;
+        }
+
+        .shop-empty {
+            color: var(--textL);
+            font-size: 14px;
+        }
+
         .c-lnk {
             display: inline-flex;
             align-items: center;
@@ -1839,6 +1938,7 @@
             .prog-item,
             .tier-grid,
             .ways-grid,
+            .shop-checkout-wrap,
             .ct-grid,
             .ft-grid,
             .sf-top {
