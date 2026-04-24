@@ -2,6 +2,8 @@ const pages = ["home", "intro", "about", "work", "events", "shop", "support", "c
 const defaultApiBaseUrl = "https://raabta-foundation.onrender.com";
 let apiBaseUrl = defaultApiBaseUrl;
 const cartState = [];
+const navToggleButton = document.getElementById("nav-toggle");
+const navLinksEl = document.getElementById("nl");
 
 const shopCatalog = [
   {
@@ -39,11 +41,53 @@ function go(id) {
     }
   });
 
+  closeMobileNav();
+
   window.scrollTo({ top: 0, behavior: "smooth" });
   observe();
 }
 
 window.go = go;
+
+function openMobileNav() {
+  if (!navLinksEl || !navToggleButton) {
+    return;
+  }
+
+  navLinksEl.classList.add("open");
+  navToggleButton.classList.add("on");
+  navToggleButton.setAttribute("aria-expanded", "true");
+}
+
+function closeMobileNav() {
+  if (!navLinksEl || !navToggleButton) {
+    return;
+  }
+
+  navLinksEl.classList.remove("open");
+  navToggleButton.classList.remove("on");
+  navToggleButton.setAttribute("aria-expanded", "false");
+}
+
+function wireMobileNav() {
+  if (!navLinksEl || !navToggleButton) {
+    return;
+  }
+
+  navToggleButton.addEventListener("click", () => {
+    if (navLinksEl.classList.contains("open")) {
+      closeMobileNav();
+      return;
+    }
+    openMobileNav();
+  });
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 960) {
+      closeMobileNav();
+    }
+  });
+}
 
 function observe() {
   const io = new IntersectionObserver(
@@ -454,6 +498,7 @@ function wireContactSubmission() {
 }
 
 loadApiConfig().finally(() => {
+  wireMobileNav();
   wireEventFilter();
   wireEventButtons();
   wireDonationButtons();
