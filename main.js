@@ -5,25 +5,25 @@ const cartState = [];
 
 const shopCatalog = [
   {
-    id: "tote-bag",
-    name: "Raabta Canvas Tote Bag",
+    id: "poetry-anthology",
+    name: "Raabta Poetry Anthology",
     price: 499,
-    description: "Reusable hand-printed tote made by women self-help groups.",
-    emoji: "👜"
+    description: "A curated printed collection of selected poems, shayari, and featured voices.",
+    emoji: "📖"
   },
   {
-    id: "seed-kit",
-    name: "Urban Seed Starter Kit",
+    id: "shayari-notebook",
+    name: "Shayari Notebook",
     price: 699,
-    description: "Grow-at-home herb and greens starter kit with guide.",
-    emoji: "🌱"
+    description: "A premium notebook for writing verses, drafts, ideas, and stage notes.",
+    emoji: "📝"
   },
   {
-    id: "community-shirt",
-    name: "Raabta Community T-Shirt",
+    id: "open-mic-tee",
+    name: "Open Mic T-Shirt",
     price: 899,
-    description: "Premium cotton support tee. Every purchase funds youth workshops.",
-    emoji: "👕"
+    description: "A soft premium tee for poetry nights, events, and creative gatherings.",
+    emoji: "🎤"
   }
 ];
 
